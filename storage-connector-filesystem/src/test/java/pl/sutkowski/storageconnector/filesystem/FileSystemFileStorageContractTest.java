@@ -1,9 +1,9 @@
 package pl.sutkowski.storageconnector.filesystem;
 
 import pl.sutkowski.api.FileStorageProvider;
-import pl.sutkowski.storageconnector.test.base.TmpDataFileStorageTestBase;
+import pl.sutkowski.storageconnector.test.base.contract.TmpDataFileStorageContractTestBase;
 
-public class FileSystemFileStorageTest extends TmpDataFileStorageTestBase {
+public class FileSystemFileStorageContractTest extends TmpDataFileStorageContractTestBase {
 
     @Override
     public FileStorageProvider getFileStorageProvider() {

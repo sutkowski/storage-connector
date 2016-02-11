@@ -1,4 +1,4 @@
-package pl.sutkowski.storageconnector.test;
+package pl.sutkowski.storageconnector.test.utils;
 
 /**
  * @author eS
