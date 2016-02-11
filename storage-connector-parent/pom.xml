@@ -26,13 +26,43 @@
                 <groupId>pl.sutkowski</groupId>
                 <artifactId>storage-connector-api</artifactId>
                 <version>${storage.connector.version}</version>
-                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>pl.sutkowski</groupId>
                 <artifactId>storage-connector-test</artifactId>
                 <version>${storage.connector.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>pl.sutkowski</groupId>
+                <artifactId>storage-connector-autoconfigure</artifactId>
+                <version>${storage.connector.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>pl.sutkowski</groupId>
+                <artifactId>storage-connector-starter-memory</artifactId>
+                <version>${storage.connector.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <version>4.2.4.RELEASE</version>
                 <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>pl.sutkowski</groupId>
+                <artifactId>storage-connector-memory</artifactId>
+                <version>${storage.connector.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>4.2.4.RELEASE</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>

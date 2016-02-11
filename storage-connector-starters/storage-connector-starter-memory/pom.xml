@@ -3,30 +3,23 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>storage-connector-parent</artifactId>
+        <artifactId>storage-connector-starters</artifactId>
         <groupId>pl.sutkowski</groupId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../storage-connector-parent</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <name>Cloud Storage In Memory Connector</name>
-
-    <artifactId>storage-connector-memory</artifactId>
+    <artifactId>storage-connector-starter-memory</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>pl.sutkowski</groupId>
-            <artifactId>storage-connector-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
+            <artifactId>storage-connector-memory</artifactId>
         </dependency>
         <dependency>
             <groupId>pl.sutkowski</groupId>
-            <artifactId>storage-connector-test</artifactId>
-            <scope>test</scope>
+            <artifactId>storage-connector-autoconfigure</artifactId>
         </dependency>
     </dependencies>
+
 </project>

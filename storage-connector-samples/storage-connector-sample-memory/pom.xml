@@ -3,29 +3,35 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>storage-connector-parent</artifactId>
+        <artifactId>storage-connector-samples</artifactId>
         <groupId>pl.sutkowski</groupId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../storage-connector-parent</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <name>Cloud Storage In Memory Connector</name>
-
-    <artifactId>storage-connector-memory</artifactId>
+    <artifactId>storage-connector-sample-memory</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>pl.sutkowski</groupId>
-            <artifactId>storage-connector-api</artifactId>
+            <artifactId>storage-connector-starter-memory</artifactId>
         </dependency>
+
+        <!--Test dependencies-->
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
+            <artifactId>spring-test</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>pl.sutkowski</groupId>
-            <artifactId>storage-connector-test</artifactId>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.2.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

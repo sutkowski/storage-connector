@@ -26,6 +26,8 @@
         <module>storage-connector-memory</module>
         <module>storage-connector-filesystem</module>
         <module>storage-connector-test</module>
+        <module>storage-connector-autoconfigure</module>
+        <module>storage-connector-samples</module>
     </modules>
 
 </project>

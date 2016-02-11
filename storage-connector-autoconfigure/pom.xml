@@ -8,15 +8,22 @@
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../storage-connector-parent</relativePath>
     </parent>
-    
-    <name>Cloud Storage Connector Starters</name>
-    <modules>
-        <module>storage-connector-starter-memory</module>
-    </modules>
-
-    <packaging>pom</packaging>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>storage-connector-starters</artifactId>
+    <name>Cloud Storage Connector Autoconfigure</name>
+    <artifactId>storage-connector-autoconfigure</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>pl.sutkowski</groupId>
+            <artifactId>storage-connector-memory</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>

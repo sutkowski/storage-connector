@@ -8,15 +8,14 @@
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../storage-connector-parent</relativePath>
     </parent>
-    
-    <name>Cloud Storage Connector Starters</name>
-    <modules>
-        <module>storage-connector-starter-memory</module>
-    </modules>
-
-    <packaging>pom</packaging>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>storage-connector-starters</artifactId>
+    <packaging>pom</packaging>
+    <name>Cloud Storage Connector Samples</name>
+    <artifactId>storage-connector-samples</artifactId>
+
+    <modules>
+        <module>storage-connector-sample-memory</module>
+    </modules>
 
 </project>
