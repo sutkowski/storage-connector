@@ -1,8 +1,5 @@
 package pl.sutkowski.storageconnector.test.utils;
 
-/**
- * @author eS
- */
 public final class BigDataContentProvider
         implements ContentProvider {
 

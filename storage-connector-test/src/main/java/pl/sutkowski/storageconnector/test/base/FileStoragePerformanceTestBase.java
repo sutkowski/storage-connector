@@ -8,6 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.sutkowski.api.FileStorage;
 
+import java.io.IOException;
+
 public abstract class FileStoragePerformanceTestBase extends AbstractTestBase{
 
     Logger log = LoggerFactory.getLogger(FileStoragePerformanceTestBase.class);
@@ -24,10 +26,6 @@ public abstract class FileStoragePerformanceTestBase extends AbstractTestBase{
     @Test
     public void shouldUploadFile() throws Exception{
         getFileStorage().upload(getContent());
-    }
-
-    private FileStorage getFileStorage() throws Exception {
-        return getFileStorageProvider().getFileStorage();
     }
 
     private byte[] getContent() {

@@ -11,9 +11,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 
-/**
- * @author eS
- */
 public class InMemoryFileStorage
         implements FileStorage {
 

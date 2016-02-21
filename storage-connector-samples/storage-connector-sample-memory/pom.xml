@@ -9,6 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <name>Cloud Storage Connector Sample Memory</name>
+
     <artifactId>storage-connector-sample-memory</artifactId>
 
     <dependencies>

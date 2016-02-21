@@ -9,9 +9,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.UUID;
 
-/**
- * @author eS
- */
 public class FileSystemFileStorage
         implements FileStorage {
 

@@ -2,10 +2,6 @@ package pl.sutkowski.api;
 
 import java.nio.file.Path;
 
-/**
- *
- * @author eS
- */
 public interface FileStorage {
 
     byte[] download(Path url);
