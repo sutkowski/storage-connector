@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>storage-connector-starters</artifactId>
+        <groupId>pl.sutkowski</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <name>Cloud Storage Connector Starter Memory</name>
+
+    <artifactId>storage-connector-starter-memory</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>pl.sutkowski</groupId>
+            <artifactId>storage-connector-memory</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>pl.sutkowski</groupId>
+            <artifactId>storage-connector-autoconfigure</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>

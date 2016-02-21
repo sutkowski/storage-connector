@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>storage-connector-parent</artifactId>
+        <groupId>pl.sutkowski</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../storage-connector-parent</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <name>Cloud Storage Amazon S3 Connector</name>
+
+    <artifactId>storage-connector-amazons3</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>pl.sutkowski</groupId>
+            <artifactId>storage-connector-api</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>
