@@ -44,6 +44,11 @@
             <artifactId>spring-boot</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>pl.sutkowski</groupId>
+            <artifactId>storage-connector-utils</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 </project>
