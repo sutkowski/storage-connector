@@ -29,5 +29,19 @@ public abstract class DropboxClientTestBase extends TmpDataFileStorageContractTe
         PlaceholderConfigurerSupport placeholderConfigurerSupport(){
             return new PropertySourcesPlaceholderConfigurer();
         }
+
+        @Bean
+        public FileStorage fileStorage(DropboxClient dropboxClient) {
+            return new DropboxFileStorage(dropboxClient);
+        }
+
+        @Bean
+        public DropboxCredentialsProvider dropboxCredentialsProvider() {
+            return new PropertiesDropboxCredentialsProvider();
+        }
+        @Bean
+        public DropboxClient dropboxClient(DropboxCredentialsProvider dropboxCredentialsProvider) {
+            return new DropboxClient(dropboxCredentialsProvider);
+        }
     }
 }

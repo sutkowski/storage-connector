@@ -1,26 +1,38 @@
 package pl.sutkowski.storageconnector.autoconfigure.dropbox;
 
+import org.springframework.beans.factory.config.PlaceholderConfigurerSupport;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import pl.sutkowski.api.FileStorage;
 import pl.sutkowski.storageconnector.dropbox.DropboxCredentialsProvider;
 import pl.sutkowski.storageconnector.dropbox.DropboxFileStorage;
+import pl.sutkowski.storageconnector.dropbox.impl.DropboxClient;
 import pl.sutkowski.storageconnector.dropbox.impl.PropertiesDropboxCredentialsProvider;
 
 @Configuration
 @ConditionalOnClass(DropboxFileStorage.class)
-@PropertySource(value = "/home/dropbox.yml", ignoreResourceNotFound = true)
+@PropertySource(value = "file:/home/dropbox.yml", ignoreResourceNotFound = true)
 public class DropboxFileStorageAutoConfiguration {
 
     @Bean
-    public FileStorage fileStorage() {
-        return new DropboxFileStorage();
+    public FileStorage fileStorage(DropboxClient dropboxClient) {
+        return new DropboxFileStorage(dropboxClient);
     }
 
     @Bean
     public DropboxCredentialsProvider dropboxCredentialsProvider() {
         return new PropertiesDropboxCredentialsProvider();
+    }
+    @Bean
+    public DropboxClient dropboxClient(DropboxCredentialsProvider dropboxCredentialsProvider) {
+        return new DropboxClient(dropboxCredentialsProvider);
+    }
+
+    @Bean
+    PlaceholderConfigurerSupport placeholderConfigurerSupport(){
+        return new PropertySourcesPlaceholderConfigurer();
     }
 }

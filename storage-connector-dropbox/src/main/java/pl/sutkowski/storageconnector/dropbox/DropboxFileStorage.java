@@ -2,10 +2,8 @@ package pl.sutkowski.storageconnector.dropbox;
 
 import com.dropbox.core.DbxClient;
 import com.dropbox.core.DbxEntry;
-import com.dropbox.core.DbxException;
 import com.dropbox.core.DbxWriteMode;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import pl.sutkowski.api.FileStorage;
 import pl.sutkowski.api.exception.FileStorageException;
 import pl.sutkowski.storageconnector.dropbox.impl.DropboxClient;
@@ -13,16 +11,18 @@ import pl.sutkowski.utils.ConversionUtils;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.UUID;
 
-@Service
 public class DropboxFileStorage implements FileStorage {
 
-    @Autowired
     DropboxClient dropboxClient;
+
+    @Autowired
+    public DropboxFileStorage(DropboxClient dropboxClient) {
+        this.dropboxClient = dropboxClient;
+    }
 
     @Override
     public Path upload(byte[] content) {
