@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.UUID;
 
 public class FileSystemFileStorage
         implements FileStorage {
@@ -38,11 +37,13 @@ public class FileSystemFileStorage
     }
 
     @Override
-    public Path upload(byte[] content) {
-        final String newId = UUID.randomUUID().toString();
+    public Path upload(byte[] content, Path url) {
         try {
-            final Path url = Paths.get(newId);
-            Files.write(resolveAbsolutePath(url), content);
+            Path path = resolveAbsolutePath(url);
+            if (!Files.exists(path)) {
+                Files.createDirectories(path);
+            }
+            Files.write(path, content);
             return url;
         } catch (IOException e) {
             throw FileStorageException.uploadFailed(e);

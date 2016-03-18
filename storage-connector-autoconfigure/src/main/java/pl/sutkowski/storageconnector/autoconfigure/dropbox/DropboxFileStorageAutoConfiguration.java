@@ -7,19 +7,19 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import pl.sutkowski.api.FileStorage;
-import pl.sutkowski.storageconnector.dropbox.DropboxCredentialsProvider;
-import pl.sutkowski.storageconnector.dropbox.DropboxFileStorage;
+import pl.sutkowski.storageconnector.dropbox.impl.DropboxCredentialsProvider;
+import pl.sutkowski.storageconnector.dropbox.DefaultDropboxFileStorage;
 import pl.sutkowski.storageconnector.dropbox.impl.DropboxClient;
 import pl.sutkowski.storageconnector.dropbox.impl.PropertiesDropboxCredentialsProvider;
 
 @Configuration
-@ConditionalOnClass(DropboxFileStorage.class)
+@ConditionalOnClass(DefaultDropboxFileStorage.class)
 @PropertySource(value = "file:/home/dropbox.yml", ignoreResourceNotFound = true)
 public class DropboxFileStorageAutoConfiguration {
 
     @Bean
     public FileStorage fileStorage(DropboxClient dropboxClient) {
-        return new DropboxFileStorage(dropboxClient);
+        return new DefaultDropboxFileStorage(dropboxClient);
     }
 
     @Bean

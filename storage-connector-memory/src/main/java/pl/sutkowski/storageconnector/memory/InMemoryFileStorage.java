@@ -32,9 +32,7 @@ public class InMemoryFileStorage
     }
 
     @Override
-    public Path upload(byte[] content) {
-        final long newId = ID.incrementAndGet();
-        final Path url = Paths.get(Long.toString(newId));
+    public Path upload(byte[] content, Path url) {
         FILES.put(url, content);
         return url;
     }

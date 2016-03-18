@@ -17,7 +17,7 @@ public class AmazonS3FileStorage implements FileStorage {
     }
 
     @Override
-    public Path upload(byte[] content) {
+    public Path upload(byte[] content, Path url) {
         return null;
     }
 }

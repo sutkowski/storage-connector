@@ -31,6 +31,16 @@ public abstract class FileStorageContractTestBase extends AbstractTestBase {
     }
 
     @Test
+    public void shouldUploadFileInFolderAndDownloadIt() throws Exception {
+        Path path = Paths.get("/path/file");
+
+        url = getFileStorage().upload(getContent(), path);
+        byte[] download = getFileStorage().download(url);
+
+        Assertions.assertThat(download).isEqualTo(getContent());
+    }
+
+    @Test
     public void shouldReturnFileStorageExceptionWhenDownloadingNonExistingFile() throws Exception {
 
         url = Paths.get("");

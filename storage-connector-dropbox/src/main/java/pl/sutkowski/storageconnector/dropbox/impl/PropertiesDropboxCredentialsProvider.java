@@ -2,7 +2,6 @@ package pl.sutkowski.storageconnector.dropbox.impl;
 
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
-import pl.sutkowski.storageconnector.dropbox.DropboxCredentialsProvider;
 
 @Getter
 public class PropertiesDropboxCredentialsProvider implements DropboxCredentialsProvider{

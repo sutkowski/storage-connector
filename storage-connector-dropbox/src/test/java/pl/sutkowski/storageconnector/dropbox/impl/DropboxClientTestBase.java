@@ -1,7 +1,6 @@
 package pl.sutkowski.storageconnector.dropbox.impl;
 
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.PlaceholderConfigurerSupport;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -11,8 +10,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pl.sutkowski.api.FileStorage;
-import pl.sutkowski.storageconnector.dropbox.DropboxCredentialsProvider;
-import pl.sutkowski.storageconnector.dropbox.DropboxFileStorage;
+import pl.sutkowski.storageconnector.dropbox.DefaultDropboxFileStorage;
 import pl.sutkowski.storageconnector.test.base.contract.TmpDataFileStorageContractTestBase;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -32,7 +30,7 @@ public abstract class DropboxClientTestBase extends TmpDataFileStorageContractTe
 
         @Bean
         public FileStorage fileStorage(DropboxClient dropboxClient) {
-            return new DropboxFileStorage(dropboxClient);
+            return new DefaultDropboxFileStorage(dropboxClient);
         }
 
         @Bean
