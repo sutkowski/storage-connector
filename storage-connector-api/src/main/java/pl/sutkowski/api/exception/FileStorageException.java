@@ -9,6 +9,7 @@ public class FileStorageException
     private static final String UPLOAD_FAILED = "Upload failed";
     private static final String CREATE_FOLDER = "Create folder %s failed";
     private static final String MOVE_FAILED = "Failed to move file from: %s, to: %s";
+    private static final String PATH_NOT_FOUND_OR_EMPTY = "Path not found or empty";
 
     public FileStorageException(String message) {
         super(message);
@@ -36,5 +37,9 @@ public class FileStorageException
 
     public static FileStorageException createFolder(String locationPath) {
         return new FileStorageException(String.format(CREATE_FOLDER, locationPath));
+    }
+
+    public static FileStorageException pathNotFound() {
+        return new FileStorageException(PATH_NOT_FOUND_OR_EMPTY);
     }
 }

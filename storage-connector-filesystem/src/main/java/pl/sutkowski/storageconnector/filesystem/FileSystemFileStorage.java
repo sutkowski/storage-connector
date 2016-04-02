@@ -40,8 +40,8 @@ public class FileSystemFileStorage
     public Path upload(byte[] content, Path url) {
         try {
             Path path = resolveAbsolutePath(url);
-            if (!Files.exists(path)) {
-                Files.createDirectories(path);
+            if (!Files.exists(path.getParent())) {
+                Files.createDirectories(path.getParent());
             }
             Files.write(path, content);
             return url;
@@ -51,6 +51,12 @@ public class FileSystemFileStorage
     }
 
     protected Path resolveAbsolutePath(Path url) {
+        if(url == null){
+            throw FileStorageException.pathNotFound();
+        }
+        if (url.startsWith("\\")) {
+            return baseDirectory.resolve(url.toString().substring(1));
+        }
         return baseDirectory.resolve(url);
     }
 
