@@ -69,7 +69,7 @@ public class DefaultDropboxFileStorage implements DropboxFileStorage {
     }
 
     @Override
-    public void move(Path fromPath, Path toPath) {
+    public Path move(Path fromPath, Path toPath) {
         try {
             if (client.move(getFullPath(fromPath), getFullPath(toPath)) == null) {
                 throw FileStorageException.moveException(getFullPath(fromPath), getFullPath(toPath));
@@ -77,6 +77,7 @@ public class DefaultDropboxFileStorage implements DropboxFileStorage {
         } catch (DbxException e) {
             throw FileStorageException.moveException(getFullPath(fromPath), getFullPath(toPath));
         }
+        return toPath;
     }
 
     private String getFileName(Path url) {

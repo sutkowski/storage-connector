@@ -36,4 +36,5 @@ public class InMemoryFileStorage
         FILES.put(url, content);
         return url;
     }
+
 }

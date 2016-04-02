@@ -1,5 +1,7 @@
 package pl.sutkowski.api;
 
+import pl.sutkowski.api.exception.FileStorageException;
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.UUID;
@@ -18,4 +20,14 @@ public interface FileStorage {
     void remove(Path url);
 
     Path upload(byte[] content, Path url);
+
+    default Path move(Path fromPath, Path toPath) {
+        try {
+            upload(download(fromPath), toPath);
+            remove(fromPath);
+            return toPath;
+        } catch (FileStorageException e) {
+            throw FileStorageException.moveException(fromPath.toString(), toPath.toString());
+        }
+    }
 }

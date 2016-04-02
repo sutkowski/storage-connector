@@ -15,9 +15,7 @@ public class FileSystemFileStorage
 
     public FileSystemFileStorage(String baseDirectory) throws IOException {
         this.baseDirectory = Paths.get(baseDirectory);
-        if (!Files.exists(this.baseDirectory)) {
-            Files.createDirectories(this.baseDirectory);
-        }
+        createDirectoryIfNotExists(this.baseDirectory);
     }
 
     @Override
@@ -40,13 +38,21 @@ public class FileSystemFileStorage
     public Path upload(byte[] content, Path url) {
         try {
             Path path = resolveAbsolutePath(url);
-            if (!Files.exists(path.getParent())) {
-                Files.createDirectories(path.getParent());
-            }
+            createDirectoryIfNotExists(path.getParent());
             Files.write(path, content);
             return url;
         } catch (IOException e) {
             throw FileStorageException.uploadFailed(e);
+        }
+    }
+
+    private void createDirectoryIfNotExists(Path parent)  {
+        if (!Files.exists(parent)) {
+            try {
+                Files.createDirectories(parent);
+            } catch (IOException e) {
+                throw FileStorageException.pathNotFound();
+            }
         }
     }
 
