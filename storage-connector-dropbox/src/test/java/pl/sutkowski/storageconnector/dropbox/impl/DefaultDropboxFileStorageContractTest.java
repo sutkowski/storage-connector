@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import pl.sutkowski.api.FileStorage;
 import pl.sutkowski.api.FileStorageProvider;
 
-public class DropboxFileStorageContractTest extends DropboxClientTestBase {
+public class DefaultDropboxFileStorageContractTest extends DropboxClientTestBase {
 
     @Autowired
     FileStorage fileStorage;

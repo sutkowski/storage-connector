@@ -1,13 +1,11 @@
 package pl.sutkowski.storageconnector.filesystem;
 
-import pl.sutkowski.api.FileStorage;
-import pl.sutkowski.api.exception.FileStorageException;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.UUID;
+import pl.sutkowski.api.FileStorage;
+import pl.sutkowski.api.exception.FileStorageException;
 
 public class FileSystemFileStorage
         implements FileStorage {
@@ -16,9 +14,7 @@ public class FileSystemFileStorage
 
     public FileSystemFileStorage(String baseDirectory) throws IOException {
         this.baseDirectory = Paths.get(baseDirectory);
-        if (!Files.exists(this.baseDirectory)) {
-            Files.createDirectories(this.baseDirectory);
-        }
+        createDirectoryIfNotExists(this.baseDirectory);
     }
 
     @Override
@@ -38,18 +34,34 @@ public class FileSystemFileStorage
     }
 
     @Override
-    public Path upload(byte[] content) {
-        final String newId = UUID.randomUUID().toString();
+    public Path upload(byte[] content, Path url) {
         try {
-            final Path url = Paths.get(newId);
-            Files.write(resolveAbsolutePath(url), content);
+            Path path = resolveAbsolutePath(url);
+            createDirectoryIfNotExists(path.getParent());
+            Files.write(path, content);
             return url;
         } catch (IOException e) {
             throw FileStorageException.uploadFailed(e);
         }
     }
 
-    protected Path resolveAbsolutePath(Path url) {
+    private void createDirectoryIfNotExists(Path parent)  {
+        if (!Files.exists(parent)) {
+            try {
+                Files.createDirectories(parent);
+            } catch (IOException e) {
+                throw FileStorageException.pathNotFound();
+            }
+        }
+    }
+
+    Path resolveAbsolutePath(Path url) {
+        if(url == null){
+            throw FileStorageException.pathNotFound();
+        }
+        if (url.startsWith("\\") || url.startsWith("/")) {
+            return baseDirectory.resolve(url.toString().substring(1));
+        }
         return baseDirectory.resolve(url);
     }
 

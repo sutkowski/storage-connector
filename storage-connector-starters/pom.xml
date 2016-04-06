@@ -12,6 +12,7 @@
     <name>Cloud Storage Connector Starters</name>
     <modules>
         <module>storage-connector-starter-memory</module>
+        <module>storage-connector-starter-dropbox</module>
     </modules>
 
     <packaging>pom</packaging>

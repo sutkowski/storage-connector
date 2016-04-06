@@ -1,4 +1,4 @@
-package sample.memory;
+package sample.dropbox;
 
 import java.nio.file.Path;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import pl.sutkowski.api.FileStorage;
 
 @Service
-public class SampleInMemoryFileStorageService {
+public class SampleDropboxFileStorageService {
 
     @Autowired
     FileStorage fileStorage;

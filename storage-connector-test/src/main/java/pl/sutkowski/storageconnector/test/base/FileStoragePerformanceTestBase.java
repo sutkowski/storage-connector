@@ -6,9 +6,6 @@ import org.junit.rules.Stopwatch;
 import org.junit.runner.Description;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.sutkowski.api.FileStorage;
-
-import java.io.IOException;
 
 public abstract class FileStoragePerformanceTestBase extends AbstractTestBase{
 

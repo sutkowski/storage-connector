@@ -10,4 +10,3 @@ public class FileSystemFileStorageContractTest extends TmpDataFileStorageContrac
         return new FileSystemFileStorageProvider();
     }
 }
-

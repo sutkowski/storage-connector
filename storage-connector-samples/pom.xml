@@ -16,6 +16,7 @@
 
     <modules>
         <module>storage-connector-sample-memory</module>
+        <module>storage-connector-sample-dropbox</module>
     </modules>
 
 </project>

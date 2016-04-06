@@ -1,4 +1,4 @@
-package pl.sutkowski.storageconnector.dropbox;
+package pl.sutkowski.storageconnector.dropbox.impl;
 
 public interface DropboxCredentialsProvider {
 

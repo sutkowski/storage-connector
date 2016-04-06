@@ -44,6 +44,11 @@
             </dependency>
             <dependency>
                 <groupId>pl.sutkowski</groupId>
+                <artifactId>storage-connector-starter-dropbox</artifactId>
+                <version>${storage.connector.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>pl.sutkowski</groupId>
                 <artifactId>storage-connector-memory</artifactId>
                 <version>${storage.connector.version}</version>
             </dependency>

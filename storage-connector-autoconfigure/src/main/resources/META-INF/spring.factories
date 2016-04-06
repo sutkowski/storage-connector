@@ -1,3 +1,4 @@
 # Auto Configure
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-pl.sutkowski.storageconnector.autoconfigure.memory.InMemoryFileStorageAutoConfiguration
+pl.sutkowski.storageconnector.autoconfigure.memory.InMemoryFileStorageAutoConfiguration,\
+pl.sutkowski.storageconnector.autoconfigure.dropbox.DropboxFileStorageAutoConfiguration
