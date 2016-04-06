@@ -4,23 +4,20 @@ import com.dropbox.core.DbxClient;
 import com.dropbox.core.DbxEntry;
 import com.dropbox.core.DbxException;
 import com.dropbox.core.DbxWriteMode;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.nio.file.Path;
 import org.springframework.beans.factory.annotation.Autowired;
 import pl.sutkowski.api.exception.FileStorageException;
 import pl.sutkowski.storageconnector.dropbox.impl.DropboxClient;
 import pl.sutkowski.utils.ConversionUtils;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.nio.file.Path;
-
 public class DefaultDropboxFileStorage implements DropboxFileStorage {
 
-    DropboxClient dropboxClient;
-    DbxClient client;
+    private DbxClient client;
 
     @Autowired
     public DefaultDropboxFileStorage(DropboxClient dropboxClient) {
-        this.dropboxClient = dropboxClient;
         client = dropboxClient.getClient();
     }
 

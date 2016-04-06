@@ -1,10 +1,9 @@
 package pl.sutkowski.api;
 
-import pl.sutkowski.api.exception.FileStorageException;
-
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.UUID;
+import pl.sutkowski.api.exception.FileStorageException;
 
 public interface FileStorage {
 

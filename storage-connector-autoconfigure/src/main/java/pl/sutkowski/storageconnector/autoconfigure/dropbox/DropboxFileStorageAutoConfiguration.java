@@ -7,9 +7,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import pl.sutkowski.api.FileStorage;
-import pl.sutkowski.storageconnector.dropbox.impl.DropboxCredentialsProvider;
 import pl.sutkowski.storageconnector.dropbox.DefaultDropboxFileStorage;
 import pl.sutkowski.storageconnector.dropbox.impl.DropboxClient;
+import pl.sutkowski.storageconnector.dropbox.impl.DropboxCredentialsProvider;
 import pl.sutkowski.storageconnector.dropbox.impl.PropertiesDropboxCredentialsProvider;
 
 @Configuration

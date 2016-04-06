@@ -9,7 +9,7 @@ public final class FileSystemFileStorageProvider
 
     @Override
     public FileStorage getFileStorage() throws IOException {
-        return new FileSystemFileStorage("/home/es/tmp/");
+        return new FileSystemFileStorage("${user.home}/tmp/");
     }
 
 }

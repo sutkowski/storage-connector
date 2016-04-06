@@ -1,10 +1,9 @@
 package sample.memory;
 
+import java.nio.file.Path;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.sutkowski.api.FileStorage;
-
-import java.nio.file.Path;
 
 @Service
 public class SampleInMemoryFileStorageService {

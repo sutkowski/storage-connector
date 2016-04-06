@@ -1,8 +1,7 @@
 package pl.sutkowski.storageconnector.dropbox;
 
-import pl.sutkowski.api.FileStorage;
-
 import java.nio.file.Path;
+import pl.sutkowski.api.FileStorage;
 
 public interface DropboxFileStorage extends FileStorage {
 

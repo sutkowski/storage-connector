@@ -1,13 +1,12 @@
 package pl.sutkowski.storageconnector.test.base.contract;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import org.assertj.core.api.Assertions;
 import org.junit.After;
 import org.junit.Test;
 import pl.sutkowski.api.exception.FileStorageException;
 import pl.sutkowski.storageconnector.test.base.AbstractTestBase;
-
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public abstract class FileStorageContractTestBase extends AbstractTestBase {
 
