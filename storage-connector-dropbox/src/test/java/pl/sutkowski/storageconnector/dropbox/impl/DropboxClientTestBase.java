@@ -19,7 +19,7 @@ import pl.sutkowski.storageconnector.test.base.contract.TmpDataFileStorageContra
 public abstract class DropboxClientTestBase extends TmpDataFileStorageContractTestBase {
 
     @Configuration
-    @PropertySource(value = "file:/home/dropbox.yml", ignoreResourceNotFound = false)
+    @PropertySource(value = "file:${user.home}/dropbox.yml", ignoreResourceNotFound = false)
     @ComponentScan(basePackages = "pl.sutkowski.storageconnector.dropbox")
     public static class TestConfig {
 

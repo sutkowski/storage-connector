@@ -14,7 +14,7 @@ import pl.sutkowski.storageconnector.dropbox.impl.PropertiesDropboxCredentialsPr
 
 @Configuration
 @ConditionalOnClass(DefaultDropboxFileStorage.class)
-@PropertySource(value = "file:/home/dropbox.yml", ignoreResourceNotFound = true)
+@PropertySource(value = "file:${user.home}/dropbox.yml", ignoreResourceNotFound = true)
 public class DropboxFileStorageAutoConfiguration {
 
     @Bean

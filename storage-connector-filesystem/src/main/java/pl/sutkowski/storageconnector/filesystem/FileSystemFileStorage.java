@@ -56,11 +56,11 @@ public class FileSystemFileStorage
         }
     }
 
-    protected Path resolveAbsolutePath(Path url) {
+    Path resolveAbsolutePath(Path url) {
         if(url == null){
             throw FileStorageException.pathNotFound();
         }
-        if (url.startsWith("\\")) {
+        if (url.startsWith("\\") || url.startsWith("/")) {
             return baseDirectory.resolve(url.toString().substring(1));
         }
         return baseDirectory.resolve(url);
