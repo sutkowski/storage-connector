@@ -8,17 +8,21 @@
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../storage-connector-parent</relativePath>
     </parent>
-    
-    <name>Cloud Storage Connector Starters</name>
-    <modules>
-        <module>storage-connector-starter-memory</module>
-        <module>storage-connector-starter-dropbox</module>
-        <module>storage-connector-starter-google-drive</module>
-    </modules>
-
-    <packaging>pom</packaging>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>storage-connector-starters</artifactId>
+    <name>Cloud Storage Google Drive Connector</name>
+
+    <artifactId>storage-connector-google-drive</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>pl.sutkowski</groupId>
+            <artifactId>storage-connector-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.apis</groupId>
+            <artifactId>google-api-services-drive</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>

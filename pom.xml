@@ -24,6 +24,7 @@
         <module>storage-connector-starters</module>
         <module>storage-connector-parent</module>
         <module>storage-connector-amazons3</module>
+        <module>storage-connector-google-drive</module>
         <module>storage-connector-dropbox</module>
         <module>storage-connector-memory</module>
         <module>storage-connector-filesystem</module>

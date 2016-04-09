@@ -10,12 +10,12 @@ public class FileSystemFileStorageTest {
 
     @Test
     public void shouldResolveAbsolutePath() throws Exception {
-        final String baseDirectory = "/home/user/tmp/";
+        final String baseDirectory = "/tmp/";
         final FileSystemFileStorage fileSystemFileStorage = new FileSystemFileStorage(baseDirectory);
 
         Path url = Paths.get("/path");
         final Path path = fileSystemFileStorage.resolveAbsolutePath(url);
 
-        assertThat(path).isEqualTo(Paths.get("/home/user/tmp/path"));
+        assertThat(path).isEqualTo(Paths.get("/tmp/path"));
     }
 }
