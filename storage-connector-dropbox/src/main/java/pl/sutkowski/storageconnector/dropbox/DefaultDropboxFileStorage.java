@@ -10,7 +10,7 @@ import java.nio.file.Path;
 import org.springframework.beans.factory.annotation.Autowired;
 import pl.sutkowski.api.exception.FileStorageException;
 import pl.sutkowski.storageconnector.dropbox.impl.DropboxClient;
-import pl.sutkowski.utils.ConversionUtils;
+import pl.sutkowski.utils.FileStorageUtils;
 
 public class DefaultDropboxFileStorage implements DropboxFileStorage {
 
@@ -38,7 +38,7 @@ public class DefaultDropboxFileStorage implements DropboxFileStorage {
             if (!file.isFile()) {
                 throw new FileStorageException("File not found");
             }
-            return ConversionUtils.toByteArray(outputStream);
+            return FileStorageUtils.toByteArray(outputStream);
         } catch (Exception ex) {
             throw new FileStorageException(ex);
         }
