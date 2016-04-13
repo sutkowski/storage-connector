@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Value;
 @Getter
 public class PropertiesGoogleDriveCredentialsProvider implements GoogleDriveCredentialsProvider {
 
-    @Value("${googledrive.app.key}")
+    @Value("${googledrive.app.clientId}")
     private String clientId;
 
-    @Value("${googledrive.app.secret}")
+    @Value("${googledrive.app.clientSecret}")
     private String clientSecret;
 
     @Value("${googledrive.app.accessToken}")

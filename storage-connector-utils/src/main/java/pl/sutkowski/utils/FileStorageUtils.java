@@ -14,7 +14,7 @@ import static java.nio.file.Files.write;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class FileStorageUtils {
 
-    public static final String TMP_DIRECTORY = "/tmp";
+    public static final String TMP_DIRECTORY = "/tmp/";
 
     public static byte[] toByteArray(ByteArrayOutputStream outputStream) {
         return outputStream.toByteArray();
