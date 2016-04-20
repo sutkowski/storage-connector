@@ -6,9 +6,11 @@ import com.dropbox.core.DbxException;
 import com.dropbox.core.DbxWriteMode;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.nio.file.Path;
 import org.springframework.beans.factory.annotation.Autowired;
+import pl.sutkowski.api.FileHolder;
+import pl.sutkowski.api.FileLocationHolder;
 import pl.sutkowski.api.exception.FileStorageException;
+import pl.sutkowski.api.impl.ByteFileHolder;
 import pl.sutkowski.storageconnector.dropbox.impl.DropboxClient;
 import pl.sutkowski.utils.FileStorageUtils;
 
@@ -22,9 +24,9 @@ public class DefaultDropboxFileStorage implements DropboxFileStorage {
     }
 
     @Override
-    public Path upload(byte[] content, Path url) {
-        try (ByteArrayInputStream inputStream = new ByteArrayInputStream(content)) {
-            client.uploadFile(getFullPath(url), DbxWriteMode.add(), content.length, inputStream);
+    public FileLocationHolder upload(FileHolder  content, FileLocationHolder url) {
+        try (ByteArrayInputStream inputStream = new ByteArrayInputStream(content.getBytes())) {
+            client.uploadFile(getFullPath(url), DbxWriteMode.add(), content.getBytes().length, inputStream);
             return url;
         } catch (Exception ex) {
             throw FileStorageException.uploadFailed(ex);
@@ -32,29 +34,29 @@ public class DefaultDropboxFileStorage implements DropboxFileStorage {
     }
 
     @Override
-    public byte[] download(Path url) {
+    public FileHolder download(FileLocationHolder url) {
         try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
             DbxEntry.File file = client.getFile(getFullPath(url), null, outputStream);
             if (!file.isFile()) {
                 throw new FileStorageException("File not found");
             }
-            return FileStorageUtils.toByteArray(outputStream);
+            return new ByteFileHolder(FileStorageUtils.toByteArray(outputStream));
         } catch (Exception ex) {
             throw new FileStorageException(ex);
         }
     }
 
     @Override
-    public void remove(Path url) {
+    public void remove(FileLocationHolder url) {
         try {
             client.delete(getFullPath(url));
         } catch (Exception e) {
-            throw FileStorageException.fileNotFound(url);
+            throw FileStorageException.fileNotFound(url.getPath());
         }
     }
 
     @Override
-    public Path createFolder(Path url) {
+    public FileLocationHolder createFolder(FileLocationHolder url) {
         try {
             if (client.createFolder(getLocationPath(url)) == null) {
                 throw FileStorageException.createFolder(getLocationPath(url));
@@ -66,7 +68,7 @@ public class DefaultDropboxFileStorage implements DropboxFileStorage {
     }
 
     @Override
-    public Path move(Path fromPath, Path toPath) {
+    public FileLocationHolder move(FileLocationHolder fromPath, FileLocationHolder toPath) {
         try {
             if (client.move(getFullPath(fromPath), getFullPath(toPath)) == null) {
                 throw FileStorageException.moveException(getFullPath(fromPath), getFullPath(toPath));
@@ -77,15 +79,15 @@ public class DefaultDropboxFileStorage implements DropboxFileStorage {
         return toPath;
     }
 
-    private String getFileName(Path url) {
-        return url.getFileName().toString();
+    private String getFileName(FileLocationHolder url) {
+        return url.getPath().getFileName().toString();
     }
 
-    private String getLocationPath(Path url) {
-        return url.getParent().toString().replaceAll("\\\\", "/");
+    private String getLocationPath(FileLocationHolder url) {
+        return url.getPath().getParent().toString().replaceAll("\\\\", "/");
     }
 
-    private String getFullPath(Path url) {
+    private String getFullPath(FileLocationHolder url) {
         return getLocationPath(url) + "/" + getFileName(url);
     }
 }

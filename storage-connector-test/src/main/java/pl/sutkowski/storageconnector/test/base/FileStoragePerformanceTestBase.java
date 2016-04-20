@@ -6,6 +6,7 @@ import org.junit.rules.Stopwatch;
 import org.junit.runner.Description;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.sutkowski.api.FileHolder;
 
 public abstract class FileStoragePerformanceTestBase extends AbstractTestBase{
 
@@ -25,7 +26,7 @@ public abstract class FileStoragePerformanceTestBase extends AbstractTestBase{
         getFileStorage().upload(getContent());
     }
 
-    private byte[] getContent() {
+    private FileHolder getContent() {
         return getContentProvider().getContent();
     }
 

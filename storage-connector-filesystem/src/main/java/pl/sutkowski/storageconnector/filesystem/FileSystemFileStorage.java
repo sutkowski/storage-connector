@@ -4,8 +4,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import pl.sutkowski.api.FileHolder;
+import pl.sutkowski.api.FileLocationHolder;
 import pl.sutkowski.api.FileStorage;
 import pl.sutkowski.api.exception.FileStorageException;
+import pl.sutkowski.api.impl.ByteFileHolder;
+import pl.sutkowski.api.impl.PathFileLocationHolder;
 
 public class FileSystemFileStorage
         implements FileStorage {
@@ -18,34 +22,34 @@ public class FileSystemFileStorage
     }
 
     @Override
-    public byte[] download(Path url) {
+    public FileHolder download(FileLocationHolder url) {
         try {
-            return Files.readAllBytes(resolveAbsolutePath(url));
+            return new ByteFileHolder(Files.readAllBytes(resolveAbsolutePath(url).getPath()));
         } catch (IOException ex) {
             throw new FileStorageException(ex);
         }
     }
 
     @Override
-    public void remove(Path url) {
-        if (!resolveAbsolutePath(url).toFile().delete()) {
-            throw FileStorageException.fileNotFound(url);
+    public void remove(FileLocationHolder url) {
+        if (!resolveAbsolutePath(url).getPath().toFile().delete()) {
+            throw FileStorageException.fileNotFound(url.getPath());
         }
     }
 
     @Override
-    public Path upload(byte[] content, Path url) {
+    public FileLocationHolder upload(FileHolder content, FileLocationHolder url) {
         try {
-            Path path = resolveAbsolutePath(url);
-            createDirectoryIfNotExists(path.getParent());
-            Files.write(path, content);
+            FileLocationHolder path = resolveAbsolutePath(url);
+            createDirectoryIfNotExists(path.getPath().getParent());
+            Files.write(path.getPath(), content.getBytes());
             return url;
         } catch (IOException e) {
             throw FileStorageException.uploadFailed(e);
         }
     }
 
-    private void createDirectoryIfNotExists(Path parent)  {
+    private void createDirectoryIfNotExists(Path parent) {
         if (!Files.exists(parent)) {
             try {
                 Files.createDirectories(parent);
@@ -55,14 +59,14 @@ public class FileSystemFileStorage
         }
     }
 
-    Path resolveAbsolutePath(Path url) {
-        if(url == null){
+    FileLocationHolder resolveAbsolutePath(FileLocationHolder url) {
+        if (url == null) {
             throw FileStorageException.pathNotFound();
         }
-        if (url.startsWith("\\") || url.startsWith("/")) {
-            return baseDirectory.resolve(url.toString().substring(1));
+        if (url.getPath().startsWith("\\") || url.getPath().startsWith("/")) {
+            return new PathFileLocationHolder(baseDirectory.resolve(url.toString().substring(1)));
         }
-        return baseDirectory.resolve(url);
+        return new PathFileLocationHolder(baseDirectory.resolve(url.getPath()));
     }
 
 }

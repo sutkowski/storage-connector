@@ -8,6 +8,13 @@
 
     <name>Cloud Storage Connector API</name>
     <description>Demo project for Spring Boot</description>
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.14.8</version>
+        </dependency>
+    </dependencies>
 
     <parent>
         <groupId>pl.sutkowski</groupId>

@@ -4,23 +4,24 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.UUID;
 import pl.sutkowski.api.exception.FileStorageException;
+import pl.sutkowski.api.impl.FileLocationFactory;
 
 public interface FileStorage {
 
-    default Path upload(byte[] content) {
+    default FileLocationHolder upload(FileHolder content) {
         final String newId = UUID.randomUUID().toString();
         final Path url = Paths.get("/" + newId);
 
-        return upload(content, url);
+        return upload(content, FileLocationFactory.of(url));
     }
 
-    byte[] download(Path url);
+    FileHolder download(FileLocationHolder url);
 
-    void remove(Path url);
+    void remove(FileLocationHolder url);
 
-    Path upload(byte[] content, Path url);
+    FileLocationHolder upload(FileHolder content, FileLocationHolder url);
 
-    default Path move(Path fromPath, Path toPath) {
+    default FileLocationHolder move(FileLocationHolder fromPath, FileLocationHolder toPath) {
         try {
             upload(download(fromPath), toPath);
             remove(fromPath);

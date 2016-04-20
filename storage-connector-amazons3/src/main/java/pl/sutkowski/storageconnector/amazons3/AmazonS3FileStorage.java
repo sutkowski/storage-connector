@@ -6,7 +6,7 @@ import pl.sutkowski.api.FileStorage;
 public class AmazonS3FileStorage implements FileStorage {
 
     @Override
-    public byte[] download(Path url) {
+    public FileHolder  download(Path url) {
         return new byte[0];
     }
 
@@ -16,7 +16,7 @@ public class AmazonS3FileStorage implements FileStorage {
     }
 
     @Override
-    public Path upload(byte[] content, Path url) {
+    public Path upload(FileHolder  content, Path url) {
         return null;
     }
 }
