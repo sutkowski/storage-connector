@@ -2,9 +2,6 @@ package pl.sutkowski.storageconnector.googledrive.impl;
 
 public interface GoogleDriveCredentialsProvider {
 
-    String getClientId();
+    String getGoogleCredentialFileLocation();
 
-    String getClientSecret();
-
-    String getAccessToken();
 }

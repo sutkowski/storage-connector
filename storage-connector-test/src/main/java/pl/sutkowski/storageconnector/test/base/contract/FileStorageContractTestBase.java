@@ -73,7 +73,7 @@ public abstract class FileStorageContractTestBase extends AbstractTestBase {
         PathFileLocationHolder path1 = new PathFileLocationHolder(Paths.get("/path1/file"));
         PathFileLocationHolder path2 = new PathFileLocationHolder(Paths.get("/path2/file"));
         url = getFileStorage().upload(getContent(),path1);
-        url = getFileStorage().move(path1, path2);
+        url = getFileStorage().move(url, path2);
         FileHolder  download = getFileStorage().download(url);
 
         Assertions.assertThat(download).isEqualTo(getContent());

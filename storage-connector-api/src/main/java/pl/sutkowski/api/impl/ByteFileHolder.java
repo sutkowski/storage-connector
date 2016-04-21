@@ -5,9 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import pl.sutkowski.api.FileHolder;
 
-/**
- * Created by es on 20.04.16.
- */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

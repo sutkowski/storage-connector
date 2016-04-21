@@ -23,9 +23,10 @@ public interface FileStorage {
 
     default FileLocationHolder move(FileLocationHolder fromPath, FileLocationHolder toPath) {
         try {
-            upload(download(fromPath), toPath);
+            final FileHolder download = download(fromPath);
+            final FileLocationHolder upload = upload(download, toPath);
             remove(fromPath);
-            return toPath;
+            return upload;
         } catch (FileStorageException e) {
             throw FileStorageException.moveException(fromPath.toString(), toPath.toString());
         }

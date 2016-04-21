@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicLong;
 import pl.sutkowski.api.FileHolder;
 import pl.sutkowski.api.FileLocationHolder;
 import pl.sutkowski.api.FileStorage;
@@ -16,7 +15,6 @@ public class InMemoryFileStorage
         implements FileStorage {
 
     private static final Map<Path, FileHolder > FILES = Collections.synchronizedMap(new HashMap<>());
-    private static final AtomicLong ID = new AtomicLong();
 
     @Override
     public FileHolder download(FileLocationHolder url) {
