@@ -64,7 +64,7 @@ public class FileSystemFileStorage
             throw FileStorageException.pathNotFound();
         }
         if (url.getPath().startsWith("\\") || url.getPath().startsWith("/")) {
-            return new PathFileLocationHolder(baseDirectory.resolve(url.toString().substring(1)));
+            return new PathFileLocationHolder(baseDirectory.resolve(url.getPath().toString().substring(1)));
         }
         return new PathFileLocationHolder(baseDirectory.resolve(url.getPath()));
     }

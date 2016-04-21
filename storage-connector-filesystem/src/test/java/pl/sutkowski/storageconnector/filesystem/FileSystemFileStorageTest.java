@@ -1,8 +1,9 @@
 package pl.sutkowski.storageconnector.filesystem;
 
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import org.junit.Test;
+import pl.sutkowski.api.FileLocationHolder;
+import pl.sutkowski.api.impl.PathFileLocationHolder;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -13,9 +14,9 @@ public class FileSystemFileStorageTest {
         final String baseDirectory = "/tmp/";
         final FileSystemFileStorage fileSystemFileStorage = new FileSystemFileStorage(baseDirectory);
 
-        Path url = Paths.get("/path");
-        final Path path = fileSystemFileStorage.resolveAbsolutePath(url);
+        PathFileLocationHolder url = new PathFileLocationHolder(Paths.get("/path"));
+        final FileLocationHolder path = fileSystemFileStorage.resolveAbsolutePath(url);
 
-        assertThat(path).isEqualTo(Paths.get("/tmp/path"));
+        assertThat(path.getPath()).isEqualTo(Paths.get("/tmp/path"));
     }
 }

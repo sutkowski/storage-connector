@@ -14,6 +14,7 @@ import pl.sutkowski.api.FileHolder;
 import pl.sutkowski.api.FileLocationHolder;
 import pl.sutkowski.api.FileStorage;
 import pl.sutkowski.api.exception.FileStorageException;
+import pl.sutkowski.api.impl.ByteFileHolder;
 import pl.sutkowski.api.impl.PathFileLocationHolder;
 import pl.sutkowski.storageconnector.googledrive.impl.GoogleDriveClient;
 import pl.sutkowski.utils.FileStorageUtils;
@@ -40,7 +41,7 @@ public class GoogleDriveFileStorage implements FileStorage {
             MediaHttpDownloader downloader =
                     new MediaHttpDownloader(googleDriveClient.getHttpTransport(), drive.getRequestFactory().getInitializer());
             downloader.download(new GenericUrl(""), out);
-            return FileStorageUtils.toByteArray(outputStream);
+            return new ByteFileHolder(FileStorageUtils.toByteArray(outputStream));
         } catch (Exception ex) {
             throw new FileStorageException(ex);
         }
@@ -61,7 +62,7 @@ public class GoogleDriveFileStorage implements FileStorage {
             File file = new File();
             file.setTitle(url.toString());
 
-            final java.io.File fileContent = FileStorageUtils.toTmpFile(content);
+            final java.io.File fileContent = FileStorageUtils.toTmpFile(content.getBytes());
             FileContent mediaContent = new FileContent("plain/text", fileContent);
 
             final Drive.Files.Insert create = drive.files().insert(file,mediaContent);
