@@ -72,11 +72,6 @@
                 <artifactId>storage-connector-starter-google-drive</artifactId>
                 <version>${storage.connector.version}</version>
             </dependency>
-            <dependency>
-                <groupId>pl.sutkowski</groupId>
-                <artifactId>storage-connector-utils</artifactId>
-                <version>${storage.connector.version}</version>
-            </dependency>
 
             <!--Spring-->
             <dependency>

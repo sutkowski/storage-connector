@@ -11,15 +11,15 @@ public class FileStorageException
     private static final String MOVE_FAILED = "Failed to move file from: %s, to: %s";
     private static final String PATH_NOT_FOUND_OR_EMPTY = "Path not found or empty";
 
-    public FileStorageException(String message) {
+    protected FileStorageException(String message) {
         super(message);
     }
 
-    public FileStorageException(Throwable cause) {
+    protected FileStorageException(Throwable cause) {
         super(cause);
     }
 
-    public FileStorageException(String message, Throwable cause) {
+    protected FileStorageException(String message, Throwable cause) {
         super(message, cause);
     }
 

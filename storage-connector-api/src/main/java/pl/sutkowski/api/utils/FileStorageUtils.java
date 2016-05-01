@@ -1,17 +1,17 @@
-package pl.sutkowski.utils;
+package pl.sutkowski.api.utils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.springframework.util.StreamUtils;
-
-import static java.nio.file.Files.write;
+import pl.sutkowski.api.exception.FileStorageException;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class FileStorageUtils {
@@ -24,7 +24,9 @@ public class FileStorageUtils {
 
     public static File toTmpFile(byte[] content) throws IOException {
         String tmpFilePath = TMP_DIRECTORY + UUID.randomUUID().toString();
-        write(Paths.get(tmpFilePath), content);
+        Path path = Paths.get(tmpFilePath);
+        createDirectoryIfNotExists(path.getParent());
+        Files.write(path, content);
         return new File(tmpFilePath);
     }
 
@@ -34,5 +36,15 @@ public class FileStorageUtils {
 
     public static byte[] toByteArray(InputStream inputStream) throws IOException {
         return StreamUtils.copyToByteArray(inputStream);
+    }
+
+    public static void createDirectoryIfNotExists(Path parent) {
+        if (!Files.exists(parent)) {
+            try {
+                Files.createDirectories(parent);
+            } catch (IOException e) {
+                throw FileStorageException.pathNotFound();
+            }
+        }
     }
 }

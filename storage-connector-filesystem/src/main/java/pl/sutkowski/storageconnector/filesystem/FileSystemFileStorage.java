@@ -10,6 +10,7 @@ import pl.sutkowski.api.FileStorage;
 import pl.sutkowski.api.exception.FileStorageException;
 import pl.sutkowski.api.impl.ByteFileHolder;
 import pl.sutkowski.api.impl.PathFileLocationHolder;
+import pl.sutkowski.api.utils.FileStorageUtils;
 
 public class FileSystemFileStorage
         implements FileStorage {
@@ -18,7 +19,7 @@ public class FileSystemFileStorage
 
     public FileSystemFileStorage(String baseDirectory) throws IOException {
         this.baseDirectory = Paths.get(baseDirectory);
-        createDirectoryIfNotExists(this.baseDirectory);
+        FileStorageUtils.createDirectoryIfNotExists(this.baseDirectory);
     }
 
     @Override
@@ -41,21 +42,11 @@ public class FileSystemFileStorage
     public FileLocationHolder upload(FileHolder content, FileLocationHolder url) {
         try {
             FileLocationHolder path = resolveAbsolutePath(url);
-            createDirectoryIfNotExists(path.getPath().getParent());
+            FileStorageUtils.createDirectoryIfNotExists(path.getPath().getParent());
             Files.write(path.getPath(), content.getBytes());
             return url;
         } catch (IOException e) {
             throw FileStorageException.uploadFailed(e);
-        }
-    }
-
-    private void createDirectoryIfNotExists(Path parent) {
-        if (!Files.exists(parent)) {
-            try {
-                Files.createDirectories(parent);
-            } catch (IOException e) {
-                throw FileStorageException.pathNotFound();
-            }
         }
     }
 

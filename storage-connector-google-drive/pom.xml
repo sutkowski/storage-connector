@@ -38,10 +38,6 @@
         </dependency>
         <dependency>
             <groupId>pl.sutkowski</groupId>
-            <artifactId>storage-connector-utils</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>pl.sutkowski</groupId>
             <artifactId>storage-connector-test</artifactId>
             <scope>test</scope>
         </dependency>

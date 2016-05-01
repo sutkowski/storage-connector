@@ -20,7 +20,6 @@
 
     <modules>
         <module>storage-connector-api</module>
-        <module>storage-connector-utils</module>
         <module>storage-connector-starters</module>
         <module>storage-connector-parent</module>
         <module>storage-connector-amazons3</module>

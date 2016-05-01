@@ -15,7 +15,7 @@ import pl.sutkowski.api.exception.FileStorageException;
 import pl.sutkowski.api.impl.ByteFileHolder;
 import pl.sutkowski.storageconnector.googledrive.impl.GoogleDriveClient;
 import pl.sutkowski.storageconnector.googledrive.impl.holder.GoogleDriveFileLocationHolder;
-import pl.sutkowski.utils.FileStorageUtils;
+import pl.sutkowski.api.utils.FileStorageUtils;
 
 public class GoogleDriveFileStorage implements FileStorage {
 
