@@ -38,11 +38,11 @@ public class DefaultDropboxFileStorage implements DropboxFileStorage {
         try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
             DbxEntry.File file = client.getFile(getFullPath(url), null, outputStream);
             if (!file.isFile()) {
-                throw new FileStorageException("File not found");
+                throw FileStorageException.fileNotFound(url.getPath());
             }
             return new ByteFileHolder(FileStorageUtils.toByteArray(outputStream));
         } catch (Exception ex) {
-            throw new FileStorageException(ex);
+            throw FileStorageException.downloadFailed(ex);
         }
     }
 

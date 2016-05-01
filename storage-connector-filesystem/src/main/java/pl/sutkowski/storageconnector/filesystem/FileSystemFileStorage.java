@@ -27,7 +27,7 @@ public class FileSystemFileStorage
         try {
             return new ByteFileHolder(Files.readAllBytes(resolveAbsolutePath(url).getPath()));
         } catch (IOException ex) {
-            throw new FileStorageException(ex);
+            throw FileStorageException.downloadFailed(ex);
         }
     }
 

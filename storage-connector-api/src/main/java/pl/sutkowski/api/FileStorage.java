@@ -1,10 +1,11 @@
 package pl.sutkowski.api;
 
+import pl.sutkowski.api.exception.FileStorageException;
+import pl.sutkowski.api.impl.PathFileLocationHolder;
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.UUID;
-import pl.sutkowski.api.exception.FileStorageException;
-import pl.sutkowski.api.impl.FileLocationFactory;
 
 public interface FileStorage {
 
@@ -12,7 +13,7 @@ public interface FileStorage {
         final String newId = UUID.randomUUID().toString();
         final Path url = Paths.get("/" + newId);
 
-        return upload(content, FileLocationFactory.of(url));
+        return upload(content, produceFileLocationHolder(url));
     }
 
     FileHolder download(FileLocationHolder url);
@@ -30,5 +31,9 @@ public interface FileStorage {
         } catch (FileStorageException e) {
             throw FileStorageException.moveException(fromPath.toString(), toPath.toString());
         }
+    }
+
+    default FileLocationHolder produceFileLocationHolder(Path path) {
+        return new PathFileLocationHolder(path);
     }
 }

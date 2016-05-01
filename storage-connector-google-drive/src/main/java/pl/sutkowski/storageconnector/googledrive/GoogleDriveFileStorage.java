@@ -7,12 +7,15 @@ import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.model.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Path;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import pl.sutkowski.api.FileHolder;
 import pl.sutkowski.api.FileLocationHolder;
 import pl.sutkowski.api.FileStorage;
 import pl.sutkowski.api.exception.FileStorageException;
 import pl.sutkowski.api.impl.ByteFileHolder;
+import pl.sutkowski.api.impl.PathFileLocationHolder;
 import pl.sutkowski.storageconnector.googledrive.impl.GoogleDriveClient;
 import pl.sutkowski.storageconnector.googledrive.impl.holder.GoogleDriveFileLocationHolder;
 import pl.sutkowski.api.utils.FileStorageUtils;
@@ -30,32 +33,29 @@ public class GoogleDriveFileStorage implements FileStorage {
 
     @Override
     public FileHolder download(FileLocationHolder genericUrl) {
-        if (!(genericUrl instanceof GoogleDriveFileLocationHolder)) {
-            throw new FileStorageException("Not Supported Location Holder instance");
-        }
+        assertGoogleDriveFileLocationHolder(genericUrl);
         GoogleDriveFileLocationHolder url = (GoogleDriveFileLocationHolder) genericUrl;
         try (InputStream inputStream = downloadFile(drive, url.getFile())) {
             return new ByteFileHolder(FileStorageUtils.toByteArray(inputStream));
         } catch (Exception ex) {
-            throw new FileStorageException(ex);
+            throw FileStorageException.downloadFailed(ex);
         }
     }
 
     @Override
     public void remove(FileLocationHolder genericUrl) {
-        if (!(genericUrl instanceof GoogleDriveFileLocationHolder)) {
-            throw new FileStorageException("Not Supported Location Holder instance");
-        }
+        assertGoogleDriveFileLocationHolder(genericUrl);
         GoogleDriveFileLocationHolder url = (GoogleDriveFileLocationHolder) genericUrl;
         try {
             drive.files().delete(url.getFile().getId()).execute();
         } catch (IOException ex) {
-            throw new FileStorageException(ex);
+            throw FileStorageException.removeFailed(ex);
         }
     }
 
     @Override
     public GoogleDriveFileLocationHolder upload(FileHolder content, FileLocationHolder url) {
+        assertGoogleDriveFileLocationHolder(url);
         try {
             File file = new File();
             file.setTitle(url.toString());
@@ -73,6 +73,13 @@ public class GoogleDriveFileStorage implements FileStorage {
         }
     }
 
+    @Override
+    public FileLocationHolder produceFileLocationHolder(Path path){
+        File file = new File();
+        file.setId(path.getFileName().toString());
+        return new GoogleDriveFileLocationHolder(file);
+    }
+
     private InputStream downloadFile(Drive service, File file) throws IOException {
         if (file.getDownloadUrl() != null && file.getDownloadUrl().length() > 0) {
             HttpResponse resp =
@@ -80,6 +87,12 @@ public class GoogleDriveFileStorage implements FileStorage {
                             .execute();
             return resp.getContent();
         }
-        throw new FileStorageException("Download url not present");
+        throw FileStorageException.downloadFailed();
+    }
+
+    private void assertGoogleDriveFileLocationHolder(FileLocationHolder genericUrl) {
+        if (!(genericUrl instanceof GoogleDriveFileLocationHolder)) {
+            throw new IllegalArgumentException("Not Supported Location Holder instance");
+        }
     }
 }

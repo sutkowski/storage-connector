@@ -19,6 +19,7 @@ public abstract class FileStorageContractTestBase extends AbstractTestBase {
         try {
             getFileStorage().remove(url);
         } catch (FileStorageException ex) {
+            //This was intentionally left blank
         }
     }
 
@@ -33,7 +34,7 @@ public abstract class FileStorageContractTestBase extends AbstractTestBase {
 
     @Test
     public void shouldUploadFileInFolderAndDownloadIt() throws Exception {
-        PathFileLocationHolder path = new PathFileLocationHolder(Paths.get("/path/file"));
+        FileLocationHolder path = getFileStorage().produceFileLocationHolder(Paths.get("/path/file"));
 
         url = getFileStorage().upload(getContent(), path);
         FileHolder  download = getFileStorage().download(url);
@@ -44,7 +45,7 @@ public abstract class FileStorageContractTestBase extends AbstractTestBase {
     @Test
     public void shouldReturnFileStorageExceptionWhenDownloadingNonExistingFile() throws Exception {
 
-        url = new PathFileLocationHolder(Paths.get(""));
+        url = getFileStorage().produceFileLocationHolder(Paths.get(""));
 
         thrown.expect(FileStorageException.class);
         getFileStorage().download(url);
@@ -62,7 +63,7 @@ public abstract class FileStorageContractTestBase extends AbstractTestBase {
 
     @Test
     public void shouldReturnErrorWhenAttemptingToRemoveNonExistingFile() throws Exception {
-        url = new PathFileLocationHolder(Paths.get(""));
+        url = getFileStorage().produceFileLocationHolder(Paths.get(""));
         thrown.expect(FileStorageException.class);
         getFileStorage().remove(url);
     }
@@ -70,8 +71,8 @@ public abstract class FileStorageContractTestBase extends AbstractTestBase {
 
     @Test
     public void shouldMoveUploadedFile() throws Exception {
-        PathFileLocationHolder path1 = new PathFileLocationHolder(Paths.get("/path1/file"));
-        PathFileLocationHolder path2 = new PathFileLocationHolder(Paths.get("/path2/file"));
+        FileLocationHolder path1 = getFileStorage().produceFileLocationHolder(Paths.get("/path1/file"));
+        FileLocationHolder path2 = getFileStorage().produceFileLocationHolder(Paths.get("/path2/file"));
         url = getFileStorage().upload(getContent(),path1);
         url = getFileStorage().move(url, path2);
         FileHolder  download = getFileStorage().download(url);
