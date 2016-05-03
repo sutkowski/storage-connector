@@ -2,6 +2,7 @@ package pl.sutkowski.storageconnector.autoconfigure.dropbox;
 
 import org.springframework.beans.factory.config.PlaceholderConfigurerSupport;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -18,15 +19,18 @@ import pl.sutkowski.storageconnector.dropbox.impl.PropertiesDropboxCredentialsPr
 public class DropboxFileStorageAutoConfiguration {
 
     @Bean
+    @ConditionalOnMissingBean(FileStorage.class)
     public FileStorage fileStorage(DropboxClient dropboxClient) {
         return new DefaultDropboxFileStorage(dropboxClient);
     }
 
     @Bean
+    @ConditionalOnMissingBean(DropboxCredentialsProvider.class)
     public DropboxCredentialsProvider dropboxCredentialsProvider() {
         return new PropertiesDropboxCredentialsProvider();
     }
     @Bean
+    @ConditionalOnMissingBean(DropboxClient.class)
     public DropboxClient dropboxClient(DropboxCredentialsProvider dropboxCredentialsProvider) {
         return new DropboxClient(dropboxCredentialsProvider);
     }
