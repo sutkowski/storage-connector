@@ -2,10 +2,11 @@ package pl.sutkowski.storageconnector.dropbox.impl;
 
 import com.dropbox.core.DbxClient;
 import com.dropbox.core.DbxRequestConfig;
-import java.util.Locale;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.Locale;
 
 @Slf4j
 public class DropboxClient {

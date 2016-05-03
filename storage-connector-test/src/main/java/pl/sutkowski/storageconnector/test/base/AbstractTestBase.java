@@ -1,13 +1,14 @@
 package pl.sutkowski.storageconnector.test.base;
 
-import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 import org.junit.Rule;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.Description;
 import pl.sutkowski.api.FileStorage;
 import pl.sutkowski.api.FileStorageProvider;
 import pl.sutkowski.storageconnector.test.utils.ContentProvider;
+
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 public abstract class AbstractTestBase {
 

@@ -1,38 +1,40 @@
 package pl.sutkowski.storageconnector.memory;
 
+import pl.sutkowski.api.FileHolder;
+import pl.sutkowski.api.FileLocationHolder;
+import pl.sutkowski.api.FileStorage;
+import pl.sutkowski.api.exception.FileStorageException;
+import pl.sutkowski.api.impl.PathFileLocationHolder;
+
 import java.nio.file.Path;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicLong;
-import pl.sutkowski.api.FileStorage;
-import pl.sutkowski.api.exception.FileStorageException;
 
 public class InMemoryFileStorage
         implements FileStorage {
 
-    private static final Map<Path, byte[]> FILES = Collections.synchronizedMap(new HashMap<>());
-    private static final AtomicLong ID = new AtomicLong();
+    private static final Map<Path, FileHolder > FILES = Collections.synchronizedMap(new HashMap<>());
 
     @Override
-    public byte[] download(Path url) {
-        return Optional.ofNullable(FILES.get(url)).orElseThrow(() ->
-                FileStorageException.fileNotFound(url)
+    public FileHolder download(FileLocationHolder url) {
+        return Optional.ofNullable(FILES.get(url.getPath())).orElseThrow(() ->
+                FileStorageException.fileNotFound(url.getPath())
         );
     }
 
     @Override
-    public void remove(Path url) {
-        Optional.ofNullable(FILES.remove(url)).orElseThrow(() ->
-                FileStorageException.fileNotFound(url)
+    public void remove(FileLocationHolder url) {
+        Optional.ofNullable(FILES.remove(url.getPath())).orElseThrow(() ->
+                FileStorageException.fileNotFound(url.getPath())
         );
     }
 
     @Override
-    public Path upload(byte[] content, Path url) {
-        FILES.put(url, content);
-        return url;
+    public FileLocationHolder upload(FileHolder  content, FileLocationHolder url) {
+        FILES.put(url.getPath(), content);
+        return new PathFileLocationHolder(url.getPath());
     }
 
 }

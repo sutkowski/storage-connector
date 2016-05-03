@@ -13,6 +13,7 @@
     <modules>
         <module>storage-connector-starter-memory</module>
         <module>storage-connector-starter-dropbox</module>
+        <module>storage-connector-starter-google-drive</module>
     </modules>
 
     <packaging>pom</packaging>

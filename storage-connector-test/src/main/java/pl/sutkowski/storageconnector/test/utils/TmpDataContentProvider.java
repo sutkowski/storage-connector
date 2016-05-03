@@ -1,11 +1,14 @@
 package pl.sutkowski.storageconnector.test.utils;
 
+import pl.sutkowski.api.FileHolder;
+import pl.sutkowski.api.impl.ByteFileHolder;
+
 public final class TmpDataContentProvider
         implements ContentProvider {
 
     @Override
-    public byte[] getContent() {
-        return "tmp".getBytes();
+    public FileHolder getContent() {
+        return new ByteFileHolder("tmp".getBytes());
     }
 
 }

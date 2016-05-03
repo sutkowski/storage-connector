@@ -1,6 +1,8 @@
 package pl.sutkowski.storageconnector.test.utils;
 
+import pl.sutkowski.api.FileHolder;
+
 public interface ContentProvider {
 
-    byte[] getContent();
+    FileHolder getContent();
 }

@@ -1,5 +1,6 @@
 package pl.sutkowski.api.exception;
 
+import java.io.IOException;
 import java.nio.file.Path;
 
 public class FileStorageException
@@ -7,19 +8,21 @@ public class FileStorageException
 
     private static final String FILE_NOT_FOUND = "File not found: %s";
     private static final String UPLOAD_FAILED = "Upload failed";
-    private static final String CREATE_FOLDER = "Create folder %s failed";
+    private static final String DOWNLOAD_FAILED = "Failed to download file";
+    private static final String REMOVE_FAILED = "Failed to remove file";
     private static final String MOVE_FAILED = "Failed to move file from: %s, to: %s";
+    private static final String CREATE_FOLDER = "Create folder %s failed";
     private static final String PATH_NOT_FOUND_OR_EMPTY = "Path not found or empty";
 
-    public FileStorageException(String message) {
+    protected FileStorageException(String message) {
         super(message);
     }
 
-    public FileStorageException(Throwable cause) {
+    protected FileStorageException(Throwable cause) {
         super(cause);
     }
 
-    public FileStorageException(String message, Throwable cause) {
+    protected FileStorageException(String message, Throwable cause) {
         super(message, cause);
     }
 
@@ -41,5 +44,17 @@ public class FileStorageException
 
     public static FileStorageException pathNotFound() {
         return new FileStorageException(PATH_NOT_FOUND_OR_EMPTY);
+    }
+
+    public static FileStorageException downloadFailed(Exception ex) {
+        return new FileStorageException(DOWNLOAD_FAILED, ex);
+    }
+
+    public static FileStorageException downloadFailed() {
+        return new FileStorageException(DOWNLOAD_FAILED);
+    }
+
+    public static FileStorageException removeFailed(IOException ex) {
+        return new FileStorageException(REMOVE_FAILED, ex);
     }
 }
