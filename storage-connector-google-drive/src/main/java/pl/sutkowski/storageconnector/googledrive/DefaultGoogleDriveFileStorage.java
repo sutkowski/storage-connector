@@ -19,13 +19,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Path;
 
-public class GoogleDriveFileStorage implements FileStorage {
+public class DefaultGoogleDriveFileStorage implements FileStorage {
 
     final GoogleDriveClient googleDriveClient;
     private Drive drive;
 
     @Autowired
-    public GoogleDriveFileStorage(GoogleDriveClient googleDriveClient) {
+    public DefaultGoogleDriveFileStorage(GoogleDriveClient googleDriveClient) {
         this.googleDriveClient = googleDriveClient;
         this.drive = googleDriveClient.getDrive();
     }

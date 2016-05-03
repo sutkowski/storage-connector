@@ -7,11 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import pl.sutkowski.api.FileStorage;
-import pl.sutkowski.storageconnector.dropbox.DefaultDropboxFileStorage;
-import pl.sutkowski.storageconnector.dropbox.impl.DropboxClient;
-import pl.sutkowski.storageconnector.dropbox.impl.DropboxCredentialsProvider;
-import pl.sutkowski.storageconnector.dropbox.impl.PropertiesDropboxCredentialsProvider;
-import pl.sutkowski.storageconnector.googledrive.GoogleDriveFileStorage;
+import pl.sutkowski.storageconnector.googledrive.DefaultGoogleDriveFileStorage;
 import pl.sutkowski.storageconnector.googledrive.authorization.GoogleAuthorization;
 import pl.sutkowski.storageconnector.googledrive.authorization.GoogleDriveCredentialsProvider;
 import pl.sutkowski.storageconnector.googledrive.authorization.impl.PropertiesGoogleDriveCredentialsProvider;
@@ -19,13 +15,13 @@ import pl.sutkowski.storageconnector.googledrive.authorization.impl.StreamGoogle
 import pl.sutkowski.storageconnector.googledrive.impl.GoogleDriveClient;
 
 @Configuration
-@ConditionalOnClass(DefaultDropboxFileStorage.class)
+@ConditionalOnClass(DefaultGoogleDriveFileStorage.class)
 @PropertySource(value = "file:${user.home}/googledrive.yml", ignoreResourceNotFound = true)
 public class GoogleDriveFileStorageAutoConfiguration {
 
     @Bean
     public FileStorage fileStorage(GoogleDriveClient googleDriveClient) {
-        return new GoogleDriveFileStorage(googleDriveClient);
+        return new DefaultGoogleDriveFileStorage(googleDriveClient);
     }
 
     @Bean
