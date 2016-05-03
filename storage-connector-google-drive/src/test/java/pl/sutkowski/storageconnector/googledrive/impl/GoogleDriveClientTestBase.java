@@ -11,6 +11,10 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pl.sutkowski.api.FileStorage;
 import pl.sutkowski.storageconnector.googledrive.GoogleDriveFileStorage;
+import pl.sutkowski.storageconnector.googledrive.authorization.GoogleAuthorization;
+import pl.sutkowski.storageconnector.googledrive.authorization.GoogleDriveCredentialsProvider;
+import pl.sutkowski.storageconnector.googledrive.authorization.impl.PropertiesGoogleDriveCredentialsProvider;
+import pl.sutkowski.storageconnector.googledrive.authorization.impl.StreamGoogleAuthorization;
 import pl.sutkowski.storageconnector.test.base.contract.TmpDataFileStorageContractTestBase;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -34,8 +38,13 @@ public abstract class GoogleDriveClientTestBase extends TmpDataFileStorageContra
         }
 
         @Bean
-        public GoogleDriveClient googleDriveClient(GoogleDriveCredentialsProvider googleDriveCredentialsProvider) {
-            return new GoogleDriveClient(googleDriveCredentialsProvider);
+        public GoogleDriveClient googleDriveClient(GoogleAuthorization googleAuthorization) {
+            return new GoogleDriveClient(googleAuthorization);
+        }
+
+        @Bean
+        public GoogleAuthorization googleAuthorization(GoogleDriveCredentialsProvider googleDriveCredentialsProvider) {
+            return new StreamGoogleAuthorization(googleDriveCredentialsProvider);
         }
         @Bean
         public GoogleDriveCredentialsProvider googleDriveCredentialsProvider(){

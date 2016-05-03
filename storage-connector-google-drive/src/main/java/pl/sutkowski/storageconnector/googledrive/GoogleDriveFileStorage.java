@@ -5,20 +5,19 @@ import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpResponse;
 import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.model.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Path;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import pl.sutkowski.api.FileHolder;
 import pl.sutkowski.api.FileLocationHolder;
 import pl.sutkowski.api.FileStorage;
 import pl.sutkowski.api.exception.FileStorageException;
 import pl.sutkowski.api.impl.ByteFileHolder;
-import pl.sutkowski.api.impl.PathFileLocationHolder;
+import pl.sutkowski.api.utils.FileStorageUtils;
 import pl.sutkowski.storageconnector.googledrive.impl.GoogleDriveClient;
 import pl.sutkowski.storageconnector.googledrive.impl.holder.GoogleDriveFileLocationHolder;
-import pl.sutkowski.api.utils.FileStorageUtils;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Path;
 
 public class GoogleDriveFileStorage implements FileStorage {
 

@@ -1,4 +1,4 @@
-package pl.sutkowski.storageconnector.googledrive.impl;
+package pl.sutkowski.storageconnector.googledrive.authorization;
 
 public interface GoogleDriveCredentialsProvider {
 

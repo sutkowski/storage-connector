@@ -1,9 +1,5 @@
 package pl.sutkowski.storageconnector.filesystem;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import pl.sutkowski.api.FileHolder;
 import pl.sutkowski.api.FileLocationHolder;
 import pl.sutkowski.api.FileStorage;
@@ -11,6 +7,11 @@ import pl.sutkowski.api.exception.FileStorageException;
 import pl.sutkowski.api.impl.ByteFileHolder;
 import pl.sutkowski.api.impl.PathFileLocationHolder;
 import pl.sutkowski.api.utils.FileStorageUtils;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class FileSystemFileStorage
         implements FileStorage {

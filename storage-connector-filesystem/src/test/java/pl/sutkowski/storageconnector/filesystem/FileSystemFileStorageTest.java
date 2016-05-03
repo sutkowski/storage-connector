@@ -1,9 +1,10 @@
 package pl.sutkowski.storageconnector.filesystem;
 
-import java.nio.file.Paths;
 import org.junit.Test;
 import pl.sutkowski.api.FileLocationHolder;
 import pl.sutkowski.api.impl.PathFileLocationHolder;
+
+import java.nio.file.Paths;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

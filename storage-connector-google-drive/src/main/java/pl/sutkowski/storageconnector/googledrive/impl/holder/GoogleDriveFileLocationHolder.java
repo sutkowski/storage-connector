@@ -1,10 +1,11 @@
 package pl.sutkowski.storageconnector.googledrive.impl.holder;
 
 import com.google.api.services.drive.model.File;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import lombok.Data;
 import pl.sutkowski.api.FileLocationHolder;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @Data
 public class GoogleDriveFileLocationHolder implements FileLocationHolder {

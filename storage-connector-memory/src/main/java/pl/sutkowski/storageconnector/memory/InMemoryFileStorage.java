@@ -1,15 +1,16 @@
 package pl.sutkowski.storageconnector.memory;
 
-import java.nio.file.Path;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
 import pl.sutkowski.api.FileHolder;
 import pl.sutkowski.api.FileLocationHolder;
 import pl.sutkowski.api.FileStorage;
 import pl.sutkowski.api.exception.FileStorageException;
 import pl.sutkowski.api.impl.PathFileLocationHolder;
+
+import java.nio.file.Path;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 public class InMemoryFileStorage
         implements FileStorage {

@@ -1,5 +1,10 @@
 package pl.sutkowski.api.utils;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+import org.springframework.util.StreamUtils;
+import pl.sutkowski.api.exception.FileStorageException;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -8,10 +13,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.UUID;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
-import org.springframework.util.StreamUtils;
-import pl.sutkowski.api.exception.FileStorageException;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class FileStorageUtils {
