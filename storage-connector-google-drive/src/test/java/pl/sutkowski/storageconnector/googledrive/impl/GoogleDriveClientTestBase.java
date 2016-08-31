@@ -15,12 +15,12 @@ import pl.sutkowski.storageconnector.googledrive.authorization.GoogleAuthorizati
 import pl.sutkowski.storageconnector.googledrive.authorization.GoogleDriveCredentialsProvider;
 import pl.sutkowski.storageconnector.googledrive.authorization.impl.PropertiesGoogleDriveCredentialsProvider;
 import pl.sutkowski.storageconnector.googledrive.authorization.impl.StreamGoogleAuthorization;
-import pl.sutkowski.storageconnector.test.base.contract.TmpDataFileStorageContractTestBase;
+import pl.sutkowski.storageconnector.test.base.contract.FileStorageContractTestBase;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @Configuration
 @SpringApplicationConfiguration(classes = {GoogleDriveClientTestBase.TestConfig.class})
-public abstract class GoogleDriveClientTestBase extends TmpDataFileStorageContractTestBase {
+public abstract class GoogleDriveClientTestBase extends FileStorageContractTestBase {
 
     @Configuration
     @PropertySource(value = "file:${user.home}/googledrive.yml", ignoreResourceNotFound = false)
