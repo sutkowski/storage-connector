@@ -23,20 +23,32 @@ public class FileStorageUtils {
         return outputStream.toByteArray();
     }
 
-    public static File toTmpFile(byte[] content) throws IOException {
+    public static File toTmpFile(byte[] content) {
         String tmpFilePath = TMP_DIRECTORY + UUID.randomUUID().toString();
         Path path = Paths.get(tmpFilePath);
         createDirectoryIfNotExists(path.getParent());
-        Files.write(path, content);
+        try {
+            Files.write(path, content);
+        } catch (IOException e) {
+            throw FileStorageException.systemException();
+        }
         return new File(tmpFilePath);
     }
 
-    public static void removeTmpFile(File file) throws IOException {
-        Files.delete(file.toPath());
+    public static void removeTmpFile(File file) {
+        try {
+            Files.delete(file.toPath());
+        } catch (IOException e) {
+            throw FileStorageException.removeFailed(e);
+        }
     }
 
-    public static byte[] toByteArray(InputStream inputStream) throws IOException {
-        return StreamUtils.copyToByteArray(inputStream);
+    public static byte[] toByteArray(InputStream inputStream) {
+        try {
+            return StreamUtils.copyToByteArray(inputStream);
+        } catch (IOException e) {
+            throw FileStorageException.systemException();
+        }
     }
 
     public static void createDirectoryIfNotExists(Path parent) {

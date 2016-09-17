@@ -13,13 +13,10 @@ public class FileStorageException
     private static final String MOVE_FAILED = "Failed to move file from: %s, to: %s";
     private static final String CREATE_FOLDER = "Create folder %s failed";
     private static final String PATH_NOT_FOUND_OR_EMPTY = "Path not found or empty";
+    private static final String SYSTEM_EXCEPTION = "SYSTEM EXCEPTION";
 
     protected FileStorageException(String message) {
         super(message);
-    }
-
-    protected FileStorageException(Throwable cause) {
-        super(cause);
     }
 
     protected FileStorageException(String message, Throwable cause) {
@@ -44,6 +41,10 @@ public class FileStorageException
 
     public static FileStorageException pathNotFound() {
         return new FileStorageException(PATH_NOT_FOUND_OR_EMPTY);
+    }
+
+    public static FileStorageException systemException() {
+        return new FileStorageException(SYSTEM_EXCEPTION);
     }
 
     public static FileStorageException downloadFailed(Exception ex) {

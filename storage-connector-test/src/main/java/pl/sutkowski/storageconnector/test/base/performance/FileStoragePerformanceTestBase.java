@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.Arrays;
+import java.util.List;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,44 +21,56 @@ public abstract class FileStoragePerformanceTestBase extends AbstractTestBase {
     private Logger log = LoggerFactory.getLogger(FileStoragePerformanceTestBase.class);
     private String userHome;
     private String testsResultsFilename;
+    private final List<FileHolder> testFileHolders = Arrays.asList(
+            new BigDataContentProvider().getContent()
+    );
 
     @Test
-    public void shouldCountAndLogUploadFileTime() throws IOException {
-        final long beginTime = System.currentTimeMillis();
-
-        final FileHolder bigDataContent = getBigDataContent();
-        getFileStorage().upload(bigDataContent);
-
-        final long endTime = System.currentTimeMillis();
-        logExecutionTime(endTime - beginTime, bigDataContent.getBytes().length, "upload");
+    public void shouldCountAndLogUploadFileTime() {
+        testFileHolders.stream().forEach(fileHolder -> uploadFile(fileHolder));
     }
 
     @Test
-    public void shouldCountAndLogDownloadFileTime() throws IOException {
-        final FileHolder bigDataContent = getBigDataContent();
-        final FileLocationHolder upload = getFileStorage().upload(bigDataContent);
+    public void shouldCountAndLogDownloadFileTime() {
+        testFileHolders.stream().forEach(fileHolder -> downloadFile(fileHolder));
+    }
+
+    @Test
+    public void shouldCountAndLogRemoveFileTime() {
+        testFileHolders.stream().forEach(fileHolder -> removeFile(fileHolder));
+    }
+
+    private void uploadFile(FileHolder fileHolder) {
+        final long beginTime = System.currentTimeMillis();
+
+        getFileStorage().upload(fileHolder);
+
+        final long endTime = System.currentTimeMillis();
+        logExecutionTime(endTime - beginTime, fileHolder.getBytes().length, "upload");
+    }
+
+    private void downloadFile(FileHolder fileHolder) {
+        final FileLocationHolder upload = getFileStorage().upload(fileHolder);
 
         final long beginTime = System.currentTimeMillis();
 
         final FileHolder download = getFileStorage().download(upload);
 
         final long endTime = System.currentTimeMillis();
-        logExecutionTime(endTime - beginTime, bigDataContent.getBytes().length, "download");
+        logExecutionTime(endTime - beginTime, fileHolder.getBytes().length, "download");
 
-        assertThat(download).isEqualTo(bigDataContent);
+        assertThat(download).isEqualTo(fileHolder);
     }
 
-    @Test
-    public void shouldCountAndLogRemoveFileTime() throws IOException {
-        final FileHolder bigDataContent = getBigDataContent();
-        final FileLocationHolder upload = getFileStorage().upload(bigDataContent);
+    private void removeFile(FileHolder fileHolder) {
+        final FileLocationHolder upload = getFileStorage().upload(fileHolder);
 
         final long beginTime = System.currentTimeMillis();
 
         getFileStorage().remove(upload);
 
         final long endTime = System.currentTimeMillis();
-        logExecutionTime(endTime - beginTime, bigDataContent.getBytes().length, "remove");
+        logExecutionTime(endTime - beginTime, fileHolder.getBytes().length, "remove");
     }
 
     private void logExecutionTime(Long nanos, Integer fileSize, String testName) {
@@ -78,10 +92,6 @@ public abstract class FileStoragePerformanceTestBase extends AbstractTestBase {
         } catch (IOException e) {
             log.error("Unable to add execution record to file !", e);
         }
-    }
-
-    private FileHolder getBigDataContent() {
-        return new BigDataContentProvider().getContent();
     }
 
 }

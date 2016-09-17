@@ -1,6 +1,5 @@
 package pl.sutkowski.storageconnector.test.base;
 
-import java.io.IOException;
 import org.junit.Rule;
 import org.junit.rules.ExpectedException;
 import pl.sutkowski.api.FileStorage;
@@ -13,7 +12,7 @@ public abstract class AbstractTestBase {
 
     protected abstract FileStorageProvider getFileStorageProvider();
 
-    protected FileStorage getFileStorage() throws IOException{
+    protected FileStorage getFileStorage(){
         return getFileStorageProvider().getFileStorage();
     }
 
