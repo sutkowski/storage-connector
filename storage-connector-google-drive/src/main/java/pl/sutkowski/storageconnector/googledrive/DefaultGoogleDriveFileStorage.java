@@ -83,7 +83,8 @@ public class DefaultGoogleDriveFileStorage implements FileStorage {
         if (file.getDownloadUrl() != null && file.getDownloadUrl().length() > 0) {
             try {
                 HttpResponse resp =
-                        service.getRequestFactory().buildGetRequest(new GenericUrl(file.getDownloadUrl()))
+                        service.getRequestFactory()
+                                .buildGetRequest(new GenericUrl(file.getDownloadUrl()))
                                 .execute();
                 return resp.getContent();
             } catch (Exception ex) {

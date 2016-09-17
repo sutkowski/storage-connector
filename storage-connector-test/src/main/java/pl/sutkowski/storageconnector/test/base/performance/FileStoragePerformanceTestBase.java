@@ -11,18 +11,28 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.sutkowski.api.FileHolder;
 import pl.sutkowski.api.FileLocationHolder;
+import pl.sutkowski.api.impl.ByteFileHolder;
 import pl.sutkowski.storageconnector.test.base.AbstractTestBase;
-import pl.sutkowski.storageconnector.test.utils.BigDataContentProvider;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public abstract class FileStoragePerformanceTestBase extends AbstractTestBase {
 
+    public static final int MB_IN_BYTES = 1024 * 1024;
+    public static final ByteFileHolder FILE_HOLDER_1_MB = new ByteFileHolder(new byte[MB_IN_BYTES]);
+    public static final ByteFileHolder FILE_HOLDER_5_MB = new ByteFileHolder(new byte[5 * MB_IN_BYTES]);
+    public static final ByteFileHolder FILE_HOLDER_50_MB = new ByteFileHolder(new byte[50 * MB_IN_BYTES]);
+    public static final ByteFileHolder FILE_HOLDER_150_MB = new ByteFileHolder(new byte[150 * MB_IN_BYTES]);
+    public static final ByteFileHolder FILE_HOLDER_250_MB = new ByteFileHolder(new byte[250 * MB_IN_BYTES]);
     private Logger log = LoggerFactory.getLogger(FileStoragePerformanceTestBase.class);
     private String userHome;
     private String testsResultsFilename;
     private final List<FileHolder> testFileHolders = Arrays.asList(
-            new BigDataContentProvider().getContent()
+            FILE_HOLDER_1_MB,
+            FILE_HOLDER_5_MB,
+            FILE_HOLDER_50_MB,
+            FILE_HOLDER_150_MB,
+            FILE_HOLDER_250_MB
     );
 
     @Test
@@ -87,8 +97,8 @@ public abstract class FileStoragePerformanceTestBase extends AbstractTestBase {
 
             final String header = executionData.getHeader();
             final String content = executionData.getData();
-            Files.write(Paths.get(testsResultsFilename), header.getBytes(), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
-            Files.write(Paths.get(testsResultsFilename), content.getBytes(), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+            Files.write(Paths.get(testsResultsFilename), header.getBytes(), StandardOpenOption.CREATE);
+            Files.write(Paths.get(testsResultsFilename), content.getBytes(), StandardOpenOption.APPEND);
         } catch (IOException e) {
             log.error("Unable to add execution record to file !", e);
         }
