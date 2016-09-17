@@ -1,21 +1,20 @@
 package pl.sutkowski.storageconnector.memory;
 
+import java.nio.file.Path;
+import java.util.Collections;
+import java.util.Map;
+import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
 import pl.sutkowski.api.FileHolder;
 import pl.sutkowski.api.FileLocationHolder;
 import pl.sutkowski.api.FileStorage;
 import pl.sutkowski.api.exception.FileStorageException;
 import pl.sutkowski.api.impl.PathFileLocationHolder;
 
-import java.nio.file.Path;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-
 public class InMemoryFileStorage
         implements FileStorage {
 
-    private static final Map<Path, FileHolder > FILES = Collections.synchronizedMap(new HashMap<>());
+    private static final Map<Path, FileHolder > FILES = Collections.synchronizedMap(new ConcurrentHashMap<>());
 
     @Override
     public FileHolder download(FileLocationHolder url) {
