@@ -25,8 +25,6 @@ public abstract class FileStoragePerformanceTestBase extends AbstractTestBase {
     public static final ByteFileHolder FILE_HOLDER_150_MB = new ByteFileHolder(new byte[150 * MB_IN_BYTES]);
     public static final ByteFileHolder FILE_HOLDER_250_MB = new ByteFileHolder(new byte[250 * MB_IN_BYTES]);
     private Logger log = LoggerFactory.getLogger(FileStoragePerformanceTestBase.class);
-    private String userHome;
-    private String testsResultsFilename;
     private final List<FileHolder> testFileHolders = Arrays.asList(
             FILE_HOLDER_1_MB,
             FILE_HOLDER_5_MB,
@@ -37,17 +35,17 @@ public abstract class FileStoragePerformanceTestBase extends AbstractTestBase {
 
     @Test
     public void shouldCountAndLogUploadFileTime() {
-        testFileHolders.stream().forEach(fileHolder -> uploadFile(fileHolder));
+        testFileHolders.stream().forEach(this::uploadFile);
     }
 
     @Test
     public void shouldCountAndLogDownloadFileTime() {
-        testFileHolders.stream().forEach(fileHolder -> downloadFile(fileHolder));
+        testFileHolders.stream().forEach(this::downloadFile);
     }
 
     @Test
     public void shouldCountAndLogRemoveFileTime() {
-        testFileHolders.stream().forEach(fileHolder -> removeFile(fileHolder));
+        testFileHolders.stream().forEach(this::removeFile);
     }
 
     private void uploadFile(FileHolder fileHolder) {
@@ -85,8 +83,8 @@ public abstract class FileStoragePerformanceTestBase extends AbstractTestBase {
 
     private void logExecutionTime(Long nanos, Integer fileSize, String testName) {
         try {
-            userHome = System.getProperty("user.home");
-            testsResultsFilename = String.format("%s/tests_results.txt", userHome);
+            String userHome = System.getProperty("user.home");
+            String testsResultsFilename = String.format("%s/tests_results.txt", userHome);
 
             final TestExecutionData executionData = TestExecutionData.builder()
                     .executionTime(nanos)

@@ -7,11 +7,12 @@ import java.nio.file.StandardOpenOption;
 import java.util.List;
 import java.util.OptionalDouble;
 import java.util.stream.Collectors;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static java.util.stream.Collectors.toList;
 
-//@Ignore("used just to parse performance test output to be usable in plotter")
+@Ignore("used just to parse performance test output to be usable in plotter")
 public class PerformanceTestsOutputProcessor {
 
     @Test
