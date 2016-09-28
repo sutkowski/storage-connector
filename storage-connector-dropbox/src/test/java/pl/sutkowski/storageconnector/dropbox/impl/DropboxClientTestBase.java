@@ -11,12 +11,12 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pl.sutkowski.api.FileStorage;
 import pl.sutkowski.storageconnector.dropbox.DefaultDropboxFileStorage;
-import pl.sutkowski.storageconnector.test.base.contract.TmpDataFileStorageContractTestBase;
+import pl.sutkowski.storageconnector.test.base.contract.FileStorageContractTestBase;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @Configuration
 @SpringApplicationConfiguration(classes = {DropboxClientTestBase.TestConfig.class})
-public abstract class DropboxClientTestBase extends TmpDataFileStorageContractTestBase {
+public abstract class DropboxClientTestBase extends FileStorageContractTestBase {
 
     @Configuration
     @PropertySource(value = "file:${user.home}/dropbox.yml", ignoreResourceNotFound = false)

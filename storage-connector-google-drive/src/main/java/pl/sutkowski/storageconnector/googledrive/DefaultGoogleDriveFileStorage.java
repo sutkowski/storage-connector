@@ -73,18 +73,23 @@ public class DefaultGoogleDriveFileStorage implements FileStorage {
     }
 
     @Override
-    public FileLocationHolder produceFileLocationHolder(Path path){
+    public FileLocationHolder produceFileLocationHolder(Path path) {
         File file = new File();
         file.setId(path.getFileName().toString());
         return new GoogleDriveFileLocationHolder(file);
     }
 
-    private InputStream downloadFile(Drive service, File file) throws IOException {
+    private InputStream downloadFile(Drive service, File file) {
         if (file.getDownloadUrl() != null && file.getDownloadUrl().length() > 0) {
-            HttpResponse resp =
-                    service.getRequestFactory().buildGetRequest(new GenericUrl(file.getDownloadUrl()))
-                            .execute();
-            return resp.getContent();
+            try {
+                HttpResponse resp =
+                        service.getRequestFactory()
+                                .buildGetRequest(new GenericUrl(file.getDownloadUrl()))
+                                .execute();
+                return resp.getContent();
+            } catch (Exception ex) {
+                throw FileStorageException.downloadFailed(ex);
+            }
         }
         throw FileStorageException.downloadFailed();
     }

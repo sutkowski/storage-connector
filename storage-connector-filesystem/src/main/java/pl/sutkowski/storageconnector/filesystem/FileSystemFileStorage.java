@@ -18,7 +18,7 @@ public class FileSystemFileStorage
 
     private final Path baseDirectory;
 
-    public FileSystemFileStorage(String baseDirectory) throws IOException {
+    public FileSystemFileStorage(String baseDirectory) {
         this.baseDirectory = Paths.get(baseDirectory);
         FileStorageUtils.createDirectoryIfNotExists(this.baseDirectory);
     }

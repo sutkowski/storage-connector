@@ -1,13 +1,12 @@
 package pl.sutkowski.storageconnector.memory;
 
 import pl.sutkowski.api.FileStorageProvider;
-import pl.sutkowski.storageconnector.test.base.FileStoragePerformanceTestBase;
+import pl.sutkowski.storageconnector.test.base.performance.FileStoragePerformanceTestBase;
 
-public abstract class AbstractInMemoryFileStoragePerformanceTest extends FileStoragePerformanceTestBase {
+public class InMemoryFileStoragePerformanceTest extends FileStoragePerformanceTestBase {
 
     @Override
     public FileStorageProvider getFileStorageProvider() {
         return new InMemoryFileStorageProvider();
     }
-
 }
