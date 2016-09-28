@@ -1,0 +1,2 @@
+logging.level.org.springframework:DEBUG
+storage.connector.filestorage.basedirectory:${user.home}/tmp/
