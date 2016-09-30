@@ -21,6 +21,11 @@
         </dependency>
         <dependency>
             <groupId>pl.sutkowski</groupId>
+            <artifactId>storage-connector-filesystem</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>pl.sutkowski</groupId>
             <artifactId>storage-connector-dropbox</artifactId>
             <scope>provided</scope>
         </dependency>

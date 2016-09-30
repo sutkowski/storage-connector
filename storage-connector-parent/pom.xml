@@ -44,12 +44,12 @@
             </dependency>
             <dependency>
                 <groupId>pl.sutkowski</groupId>
-                <artifactId>storage-connector-starter-memory</artifactId>
+                <artifactId>storage-connector-filesystem</artifactId>
                 <version>${storage.connector.version}</version>
             </dependency>
             <dependency>
                 <groupId>pl.sutkowski</groupId>
-                <artifactId>storage-connector-starter-dropbox</artifactId>
+                <artifactId>storage-connector-starter-filesystem</artifactId>
                 <version>${storage.connector.version}</version>
             </dependency>
             <dependency>
@@ -59,7 +59,17 @@
             </dependency>
             <dependency>
                 <groupId>pl.sutkowski</groupId>
+                <artifactId>storage-connector-starter-memory</artifactId>
+                <version>${storage.connector.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>pl.sutkowski</groupId>
                 <artifactId>storage-connector-dropbox</artifactId>
+                <version>${storage.connector.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>pl.sutkowski</groupId>
+                <artifactId>storage-connector-starter-dropbox</artifactId>
                 <version>${storage.connector.version}</version>
             </dependency>
             <dependency>
