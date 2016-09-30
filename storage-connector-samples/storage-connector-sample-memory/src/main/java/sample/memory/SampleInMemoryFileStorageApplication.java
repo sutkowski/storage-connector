@@ -1,4 +1,4 @@
-package sample.filesystem;
+package sample.memory;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

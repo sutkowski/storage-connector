@@ -9,7 +9,7 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pl.sutkowski.api.FileStorage;
 import pl.sutkowski.storageconnector.memory.InMemoryFileStorage;
-import sample.filesystem.SampleInMemoryFileStorageApplication;
+import sample.memory.SampleInMemoryFileStorageApplication;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = SampleInMemoryFileStorageApplication.class)
