@@ -6,6 +6,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.Arrays;
 import java.util.List;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,16 +35,19 @@ public abstract class FileStoragePerformanceTestBase extends AbstractTestBase {
     );
 
     @Test
+    @Ignore
     public void shouldCountAndLogUploadFileTime() {
         testFileHolders.stream().forEach(this::uploadFile);
     }
 
     @Test
+    @Ignore
     public void shouldCountAndLogDownloadFileTime() {
         testFileHolders.stream().forEach(this::downloadFile);
     }
 
     @Test
+    @Ignore
     public void shouldCountAndLogRemoveFileTime() {
         testFileHolders.stream().forEach(this::removeFile);
     }
