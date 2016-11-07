@@ -63,8 +63,15 @@ public abstract class FileStorageContractTestBase extends AbstractTestBase {
     }
 
     @Test
-    public void shouldReturnErrorWhenAttemptingToRemoveNonExistingFile() throws Exception {
+    public void shouldReturnErrorWhenAttemptingToRemoveFileWithEmptyNameAndPath() throws Exception {
         url = getFileStorage().produceFileLocationHolder(Paths.get(""));
+        thrown.expect(FileStorageException.class);
+        getFileStorage().remove(url);
+    }
+
+    @Test
+    public void shouldReturnErrorWhenAttemptingToRemoveNonExistingFile() throws Exception {
+        url = getFileStorage().produceFileLocationHolder(Paths.get("non-existing-file"));
         thrown.expect(FileStorageException.class);
         getFileStorage().remove(url);
     }
