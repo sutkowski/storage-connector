@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pl.sutkowski.api.FileStorage;
-import pl.sutkowski.storageconnector.amazons3.Amazons3FileStorage;
+import pl.sutkowski.storageconnector.amazons3.AmazonS3FileStorage;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = SampleAmazons3FileStorageApplication.class)
@@ -23,7 +23,7 @@ public class SampleAmazons3FileStorageRestControllerTest {
     @Test
     public void fileStorageShouldBeInstanceOfAmazons3() {
         Assertions.assertThat(fileStorage).isNotNull();
-        Assertions.assertThat(fileStorage instanceof Amazons3FileStorage).isTrue();
+        Assertions.assertThat(fileStorage instanceof AmazonS3FileStorage).isTrue();
     }
 
 }

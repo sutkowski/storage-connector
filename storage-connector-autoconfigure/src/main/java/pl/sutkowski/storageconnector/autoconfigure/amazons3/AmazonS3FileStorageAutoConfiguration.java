@@ -19,7 +19,7 @@ import pl.sutkowski.storageconnector.amazons3.impl.PropertiesAmazonS3ConfigProvi
 
 @Configuration
 @ConditionalOnClass(DefaultAmazonS3FileStorage.class)
-@PropertySource(value = "file:${user.home}/dropbox.yml", ignoreResourceNotFound = true)
+@PropertySource(value = "file:${user.home}/amazons3.yml", ignoreResourceNotFound = true)
 public class AmazonS3FileStorageAutoConfiguration {
 
     @Bean

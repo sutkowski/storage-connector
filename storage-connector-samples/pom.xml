@@ -19,6 +19,7 @@
         <module>storage-connector-sample-filesystem</module>
         <module>storage-connector-sample-dropbox</module>
         <module>storage-connector-sample-google-drive</module>
+        <module>storage-connector-sample-amazons3</module>
     </modules>
 
 </project>
