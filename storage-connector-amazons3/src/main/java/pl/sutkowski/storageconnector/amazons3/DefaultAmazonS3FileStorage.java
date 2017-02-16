@@ -15,7 +15,7 @@ import pl.sutkowski.api.utils.FileStorageUtils;
 import java.io.ByteArrayInputStream;
 
 @Slf4j
-public class DefaultAmazonS3FileStorage implements FileStorage {
+public class DefaultAmazonS3FileStorage implements AmazonS3FileStorage {
 
     private final AmazonS3Client client;
     private final String bucketName;

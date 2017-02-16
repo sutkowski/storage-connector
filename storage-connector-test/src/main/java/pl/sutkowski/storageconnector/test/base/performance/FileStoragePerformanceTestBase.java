@@ -22,32 +22,24 @@ public abstract class FileStoragePerformanceTestBase extends AbstractTestBase {
     public static final int MB_IN_BYTES = 1024 * 1024;
     public static final ByteFileHolder FILE_HOLDER_1_MB = new ByteFileHolder(new byte[MB_IN_BYTES]);
     public static final ByteFileHolder FILE_HOLDER_5_MB = new ByteFileHolder(new byte[5 * MB_IN_BYTES]);
-    public static final ByteFileHolder FILE_HOLDER_50_MB = new ByteFileHolder(new byte[50 * MB_IN_BYTES]);
-    public static final ByteFileHolder FILE_HOLDER_150_MB = new ByteFileHolder(new byte[150 * MB_IN_BYTES]);
-    public static final ByteFileHolder FILE_HOLDER_250_MB = new ByteFileHolder(new byte[250 * MB_IN_BYTES]);
+    public static final ByteFileHolder FILE_HOLDER_10_MB = new ByteFileHolder(new byte[10 * MB_IN_BYTES]);
+    public static final ByteFileHolder FILE_HOLDER_15_MB = new ByteFileHolder(new byte[15 * MB_IN_BYTES]);
     private Logger log = LoggerFactory.getLogger(FileStoragePerformanceTestBase.class);
     private final List<FileHolder> testFileHolders = Arrays.asList(
-            FILE_HOLDER_1_MB,
-            FILE_HOLDER_5_MB,
-            FILE_HOLDER_50_MB,
-            FILE_HOLDER_150_MB,
-            FILE_HOLDER_250_MB
+            FILE_HOLDER_1_MB
     );
 
     @Test
-    @Ignore
     public void shouldCountAndLogUploadFileTime() {
         testFileHolders.stream().forEach(this::uploadFile);
     }
 
     @Test
-    @Ignore
     public void shouldCountAndLogDownloadFileTime() {
         testFileHolders.stream().forEach(this::downloadFile);
     }
 
     @Test
-    @Ignore
     public void shouldCountAndLogRemoveFileTime() {
         testFileHolders.stream().forEach(this::removeFile);
     }
