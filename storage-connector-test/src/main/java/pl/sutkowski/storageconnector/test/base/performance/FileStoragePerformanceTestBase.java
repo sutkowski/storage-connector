@@ -1,11 +1,5 @@
 package pl.sutkowski.storageconnector.test.base.performance;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
-import java.util.Arrays;
-import java.util.List;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -15,31 +9,48 @@ import pl.sutkowski.api.FileLocationHolder;
 import pl.sutkowski.api.impl.ByteFileHolder;
 import pl.sutkowski.storageconnector.test.base.AbstractTestBase;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public abstract class FileStoragePerformanceTestBase extends AbstractTestBase {
 
     public static final int MB_IN_BYTES = 1024 * 1024;
-    public static final ByteFileHolder FILE_HOLDER_1_MB = new ByteFileHolder(new byte[MB_IN_BYTES]);
+    public static final ByteFileHolder FILE_HOLDER_1_MB = new ByteFileHolder(new byte[1 * MB_IN_BYTES]);
+    public static final ByteFileHolder FILE_HOLDER_2_MB = new ByteFileHolder(new byte[2 * MB_IN_BYTES]);
+    public static final ByteFileHolder FILE_HOLDER_3_MB = new ByteFileHolder(new byte[3 * MB_IN_BYTES]);
+    public static final ByteFileHolder FILE_HOLDER_4_MB = new ByteFileHolder(new byte[4 * MB_IN_BYTES]);
     public static final ByteFileHolder FILE_HOLDER_5_MB = new ByteFileHolder(new byte[5 * MB_IN_BYTES]);
     public static final ByteFileHolder FILE_HOLDER_10_MB = new ByteFileHolder(new byte[10 * MB_IN_BYTES]);
     public static final ByteFileHolder FILE_HOLDER_15_MB = new ByteFileHolder(new byte[15 * MB_IN_BYTES]);
-    private Logger log = LoggerFactory.getLogger(FileStoragePerformanceTestBase.class);
+
     private final List<FileHolder> testFileHolders = Arrays.asList(
-            FILE_HOLDER_1_MB
+            FILE_HOLDER_1_MB,
+            FILE_HOLDER_2_MB,
+            FILE_HOLDER_3_MB
     );
 
+    private Logger log = LoggerFactory.getLogger(FileStoragePerformanceTestBase.class);
+
     @Test
+    @Ignore
     public void shouldCountAndLogUploadFileTime() {
         testFileHolders.stream().forEach(this::uploadFile);
     }
 
     @Test
+    @Ignore
     public void shouldCountAndLogDownloadFileTime() {
         testFileHolders.stream().forEach(this::downloadFile);
     }
 
     @Test
+    @Ignore
     public void shouldCountAndLogRemoveFileTime() {
         testFileHolders.stream().forEach(this::removeFile);
     }
