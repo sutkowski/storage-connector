@@ -37,6 +37,7 @@ public abstract class DropboxClientTestBase extends FileStorageContractTestBase 
         public DropboxCredentialsProvider dropboxCredentialsProvider() {
             return new PropertiesDropboxCredentialsProvider();
         }
+
         @Bean
         public DropboxClient dropboxClient(DropboxCredentialsProvider dropboxCredentialsProvider) {
             return new DropboxClient(dropboxCredentialsProvider);

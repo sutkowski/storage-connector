@@ -6,4 +6,8 @@ public interface FileLocationHolder {
 
     Path getPath();
 
+    default String getPathAsString() {
+        return getPath().toString();
+    }
+
 }

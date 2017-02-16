@@ -27,7 +27,7 @@ public class DefaultDropboxFileStorage implements DropboxFileStorage {
     @Override
     public FileLocationHolder upload(FileHolder  content, FileLocationHolder url) {
         try (ByteArrayInputStream inputStream = new ByteArrayInputStream(content.getBytes())) {
-            client.uploadFile(getFullPath(url), DbxWriteMode.add(), content.getBytes().length, inputStream);
+            client.uploadFile(FileStorageUtils.getFullPath(url), DbxWriteMode.add(), content.getBytes().length, inputStream);
             return url;
         } catch (Exception ex) {
             throw FileStorageException.uploadFailed(ex);
@@ -37,7 +37,7 @@ public class DefaultDropboxFileStorage implements DropboxFileStorage {
     @Override
     public FileHolder download(FileLocationHolder url) {
         try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
-            DbxEntry.File file = client.getFile(getFullPath(url), null, outputStream);
+            DbxEntry.File file = client.getFile(FileStorageUtils.getFullPath(url), null, outputStream);
             if (!file.isFile()) {
                 throw FileStorageException.fileNotFound(url.getPath());
             }
@@ -50,7 +50,7 @@ public class DefaultDropboxFileStorage implements DropboxFileStorage {
     @Override
     public void remove(FileLocationHolder url) {
         try {
-            client.delete(getFullPath(url));
+            client.delete(FileStorageUtils.getFullPath(url));
         } catch (Exception e) {
             throw FileStorageException.fileNotFound(url.getPath());
         }
@@ -59,11 +59,11 @@ public class DefaultDropboxFileStorage implements DropboxFileStorage {
     @Override
     public FileLocationHolder createFolder(FileLocationHolder url) {
         try {
-            if (client.createFolder(getLocationPath(url)) == null) {
-                throw FileStorageException.createFolder(getLocationPath(url));
+            if (client.createFolder(FileStorageUtils.getLocationPath(url)) == null) {
+                throw FileStorageException.createFolder(FileStorageUtils.getLocationPath(url));
             }
         } catch (DbxException e) {
-            throw FileStorageException.createFolder(getLocationPath(url));
+            throw FileStorageException.createFolder(FileStorageUtils.getLocationPath(url));
         }
         return url;
     }
@@ -71,24 +71,13 @@ public class DefaultDropboxFileStorage implements DropboxFileStorage {
     @Override
     public FileLocationHolder move(FileLocationHolder fromPath, FileLocationHolder toPath) {
         try {
-            if (client.move(getFullPath(fromPath), getFullPath(toPath)) == null) {
-                throw FileStorageException.moveException(getFullPath(fromPath), getFullPath(toPath));
+            if (client.move(FileStorageUtils.getFullPath(fromPath), FileStorageUtils.getFullPath(toPath)) == null) {
+                throw FileStorageException.moveException(FileStorageUtils.getFullPath(fromPath), FileStorageUtils.getFullPath(toPath));
             }
         } catch (DbxException e) {
-            throw FileStorageException.moveException(getFullPath(fromPath), getFullPath(toPath));
+            throw FileStorageException.moveException(FileStorageUtils.getFullPath(fromPath), FileStorageUtils.getFullPath(toPath));
         }
         return toPath;
     }
 
-    private String getFileName(FileLocationHolder url) {
-        return url.getPath().getFileName().toString();
-    }
-
-    private String getLocationPath(FileLocationHolder url) {
-        return url.getPath().getParent().toString().replaceAll("\\\\", "/");
-    }
-
-    private String getFullPath(FileLocationHolder url) {
-        return getLocationPath(url) + "/" + getFileName(url);
-    }
 }

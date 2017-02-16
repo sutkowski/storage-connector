@@ -34,6 +34,11 @@
             <artifactId>storage-connector-google-drive</artifactId>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>pl.sutkowski</groupId>
+            <artifactId>storage-connector-amazons3</artifactId>
+            <scope>provided</scope>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

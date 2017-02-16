@@ -15,6 +15,7 @@
         <module>storage-connector-starter-dropbox</module>
         <module>storage-connector-starter-filesystem</module>
         <module>storage-connector-starter-google-drive</module>
+        <module>storage-connector-starter-amazons3</module>
     </modules>
 
     <packaging>pom</packaging>

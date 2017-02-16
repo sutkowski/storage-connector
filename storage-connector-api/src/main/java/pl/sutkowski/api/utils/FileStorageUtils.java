@@ -3,6 +3,7 @@ package pl.sutkowski.api.utils;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.springframework.util.StreamUtils;
+import pl.sutkowski.api.FileLocationHolder;
 import pl.sutkowski.api.exception.FileStorageException;
 
 import java.io.ByteArrayOutputStream;
@@ -59,5 +60,17 @@ public class FileStorageUtils {
                 throw FileStorageException.pathNotFound();
             }
         }
+    }
+
+    public static  String getFileName(FileLocationHolder url) {
+        return url.getPath().getFileName().toString();
+    }
+
+    public static  String getLocationPath(FileLocationHolder url) {
+        return url.getPath().getParent().toString().replaceAll("\\\\", "/");
+    }
+
+    public static String getFullPath(FileLocationHolder url) {
+        return getLocationPath(url) + "/" + getFileName(url);
     }
 }

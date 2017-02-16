@@ -74,6 +74,16 @@
             </dependency>
             <dependency>
                 <groupId>pl.sutkowski</groupId>
+                <artifactId>storage-connector-amazons3</artifactId>
+                <version>${storage.connector.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>pl.sutkowski</groupId>
+                <artifactId>storage-connector-starter-amazons3</artifactId>
+                <version>${storage.connector.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>pl.sutkowski</groupId>
                 <artifactId>storage-connector-google-drive</artifactId>
                 <version>${storage.connector.version}</version>
             </dependency>
