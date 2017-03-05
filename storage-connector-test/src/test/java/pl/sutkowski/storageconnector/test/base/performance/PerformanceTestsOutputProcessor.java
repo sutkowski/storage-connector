@@ -1,5 +1,8 @@
 package pl.sutkowski.storageconnector.test.base.performance;
 
+import org.junit.Ignore;
+import org.junit.Test;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -7,8 +10,6 @@ import java.nio.file.StandardOpenOption;
 import java.util.List;
 import java.util.OptionalDouble;
 import java.util.stream.Collectors;
-import org.junit.Ignore;
-import org.junit.Test;
 
 import static java.util.stream.Collectors.toList;
 
@@ -32,27 +33,28 @@ public class PerformanceTestsOutputProcessor {
         final List<String> tests =
                 testExecutionData.stream().map(TestExecutionData::getTestName).distinct().collect(toList());
         final List<Integer> fileSizes =
-                testExecutionData.stream().map(TestExecutionData::getFileSize).distinct().collect(toList());
+                testExecutionData.stream().map(TestExecutionData::getFileSize).distinct().sorted().collect(toList());
 
         StringBuilder outputData = new StringBuilder();
-        outputData.append(";");
+        outputData.append("\t\t");
         outputData.append(
-                fileSizes.stream().map(size -> size.toString())
-                        .collect(Collectors.joining(";")).concat("\n"));
-        implementations.stream().forEach(
-                implementation -> tests.stream().forEach(
-                        test -> {
-                            outputData.append(String.format("%s [%s];", implementation, test));
+                fileSizes.stream().map(size -> size / 1024.0 / 1024.0).map(size -> size.toString())
+                        .collect(Collectors.joining("\t")).concat("\n"));
+        tests.stream().forEach(
+                test -> implementations.stream().forEach(
+                        implementation -> {
+                            outputData.append(String.format("[%s]\t%s\t", test, implementation));
                             fileSizes.stream().forEach(
                                     fileSize -> {
                                         final OptionalDouble averageExecutionTime = testExecutionData.stream()
-                                                .filter(ted -> ted.getImplementation().equalsIgnoreCase(implementation))
                                                 .filter(ted -> ted.getTestName().equalsIgnoreCase(test))
+                                                .filter(ted -> ted.getImplementation().equalsIgnoreCase(implementation))
                                                 .filter(ted -> ted.getFileSize().equals(fileSize))
                                                 .map(TestExecutionData::getExecutionTime)
                                                 .mapToInt(ted -> ted.intValue())
                                                 .average();
-                                        outputData.append(averageExecutionTime.getAsDouble() + ";");
+                                        averageExecutionTime.ifPresent(averageTime ->
+                                                outputData.append(averageTime + "\t"));
                                     }
                             );
                             outputData.append("\n");

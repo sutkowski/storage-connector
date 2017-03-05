@@ -21,6 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public abstract class FileStoragePerformanceTestBase extends AbstractTestBase {
 
     public static final int MB_IN_BYTES = 1024 * 1024;
+    public static final int KB_IN_BYTES = 1024;
     public static final ByteFileHolder FILE_HOLDER_1_MB = new ByteFileHolder(new byte[1 * MB_IN_BYTES]);
     public static final ByteFileHolder FILE_HOLDER_2_MB = new ByteFileHolder(new byte[2 * MB_IN_BYTES]);
     public static final ByteFileHolder FILE_HOLDER_3_MB = new ByteFileHolder(new byte[3 * MB_IN_BYTES]);
@@ -30,9 +31,11 @@ public abstract class FileStoragePerformanceTestBase extends AbstractTestBase {
     public static final ByteFileHolder FILE_HOLDER_15_MB = new ByteFileHolder(new byte[15 * MB_IN_BYTES]);
 
     private final List<FileHolder> testFileHolders = Arrays.asList(
-            FILE_HOLDER_1_MB,
-            FILE_HOLDER_2_MB,
-            FILE_HOLDER_3_MB
+            new ByteFileHolder(new byte[128 * KB_IN_BYTES]),
+            new ByteFileHolder(new byte[256 * KB_IN_BYTES]),
+            new ByteFileHolder(new byte[512 * KB_IN_BYTES]),
+            new ByteFileHolder(new byte[768 * KB_IN_BYTES]),
+            FILE_HOLDER_1_MB
     );
 
     private Logger log = LoggerFactory.getLogger(FileStoragePerformanceTestBase.class);
