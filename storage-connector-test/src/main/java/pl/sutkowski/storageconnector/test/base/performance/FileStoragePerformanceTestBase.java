@@ -4,6 +4,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.test.annotation.Repeat;
 import pl.sutkowski.api.FileHolder;
 import pl.sutkowski.api.FileLocationHolder;
 import pl.sutkowski.api.impl.ByteFileHolder;
@@ -41,16 +42,19 @@ public abstract class FileStoragePerformanceTestBase extends AbstractTestBase {
     private Logger log = LoggerFactory.getLogger(FileStoragePerformanceTestBase.class);
 
     @Test
+    @Repeat(value = 10)
     public void shouldCountAndLogUploadFileTime() {
         testFileHolders.stream().forEach(this::uploadFile);
     }
 
     @Test
+    @Repeat(value = 10)
     public void shouldCountAndLogDownloadFileTime() {
         testFileHolders.stream().forEach(this::downloadFile);
     }
 
     @Test
+    @Repeat(value = 10)
     public void shouldCountAndLogRemoveFileTime() {
         testFileHolders.stream().forEach(this::removeFile);
     }
