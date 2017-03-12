@@ -41,19 +41,16 @@ public abstract class FileStoragePerformanceTestBase extends AbstractTestBase {
     private Logger log = LoggerFactory.getLogger(FileStoragePerformanceTestBase.class);
 
     @Test
-    @Ignore
     public void shouldCountAndLogUploadFileTime() {
         testFileHolders.stream().forEach(this::uploadFile);
     }
 
     @Test
-    @Ignore
     public void shouldCountAndLogDownloadFileTime() {
         testFileHolders.stream().forEach(this::downloadFile);
     }
 
     @Test
-    @Ignore
     public void shouldCountAndLogRemoveFileTime() {
         testFileHolders.stream().forEach(this::removeFile);
     }
