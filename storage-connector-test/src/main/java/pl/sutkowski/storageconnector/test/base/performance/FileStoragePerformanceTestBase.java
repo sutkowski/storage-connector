@@ -36,7 +36,11 @@ public abstract class FileStoragePerformanceTestBase extends AbstractTestBase {
             new ByteFileHolder(new byte[256 * KB_IN_BYTES]),
             new ByteFileHolder(new byte[512 * KB_IN_BYTES]),
             new ByteFileHolder(new byte[768 * KB_IN_BYTES]),
-            FILE_HOLDER_1_MB
+            FILE_HOLDER_1_MB,
+            FILE_HOLDER_2_MB,
+            FILE_HOLDER_3_MB,
+            FILE_HOLDER_4_MB,
+            FILE_HOLDER_5_MB
     );
 
     private Logger log = LoggerFactory.getLogger(FileStoragePerformanceTestBase.class);
