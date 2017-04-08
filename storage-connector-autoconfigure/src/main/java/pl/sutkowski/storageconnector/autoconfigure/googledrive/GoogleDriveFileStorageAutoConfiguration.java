@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import pl.sutkowski.api.FileStorage;
+import pl.sutkowski.api.FileStorageImplementation;
 import pl.sutkowski.api.FileStorageImplementor;
 import pl.sutkowski.storageconnector.googledrive.DefaultGoogleDriveFileStorageImplementor;
 import pl.sutkowski.storageconnector.googledrive.authorization.GoogleAuthorization;
@@ -22,8 +24,14 @@ public class GoogleDriveFileStorageAutoConfiguration {
 
     @Bean
     @ConditionalOnMissingBean(FileStorageImplementor.class)
-    public FileStorageImplementor fileStorage(GoogleDriveClient googleDriveClient) {
+    public FileStorageImplementor fileStorageImplementor(GoogleDriveClient googleDriveClient) {
         return new DefaultGoogleDriveFileStorageImplementor(googleDriveClient);
+    }
+
+    @Bean
+    @ConditionalOnMissingBean(FileStorage.class)
+    public FileStorage fileStorage(FileStorageImplementor fileStorageImplementor) {
+        return new FileStorageImplementation(fileStorageImplementor);
     }
 
     @Bean
