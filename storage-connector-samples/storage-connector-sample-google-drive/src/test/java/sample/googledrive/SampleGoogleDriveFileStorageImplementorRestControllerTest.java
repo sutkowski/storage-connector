@@ -6,15 +6,15 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import pl.sutkowski.api.FileStorage;
-import pl.sutkowski.storageconnector.googledrive.DefaultGoogleDriveFileStorage;
+import pl.sutkowski.api.FileStorageImplementor;
+import pl.sutkowski.storageconnector.googledrive.DefaultGoogleDriveFileStorageImplementor;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = SampleGoogleDriveFileStorageApplication.class)
-public class SampleGoogleDriveFileStorageRestControllerTest {
+public class SampleGoogleDriveFileStorageImplementorRestControllerTest {
 
     @Autowired
-    FileStorage fileStorage;
+    FileStorageImplementor fileStorageImplementor;
 
     @Test
     public void contextLoads() {
@@ -22,8 +22,8 @@ public class SampleGoogleDriveFileStorageRestControllerTest {
 
     @Test
     public void fileStorageShouldBeInstanceOfGoogleDrive() {
-        Assertions.assertThat(fileStorage).isNotNull();
-        Assertions.assertThat(fileStorage instanceof DefaultGoogleDriveFileStorage).isTrue();
+        Assertions.assertThat(fileStorageImplementor).isNotNull();
+        Assertions.assertThat(fileStorageImplementor instanceof DefaultGoogleDriveFileStorageImplementor).isTrue();
     }
 
 }

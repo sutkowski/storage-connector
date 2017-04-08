@@ -6,12 +6,12 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pl.sutkowski.api.FileStorageImplementor;
-import pl.sutkowski.storageconnector.test.base.contract.FileStorageContractTestBase;
+import pl.sutkowski.storageconnector.test.base.performance.FileStoragePerformanceTestBase;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @Configuration
 @SpringApplicationConfiguration(classes = {GoogleDriveTestConfig.class})
-public class GoogleDriveClientTest  extends FileStorageContractTestBase {
+public class GoogleDriveFileStorageImplementorPerformanceTest extends FileStoragePerformanceTestBase {
 
     @Autowired
     FileStorageImplementor googleDriveFileStorageImplementor;
@@ -21,5 +21,3 @@ public class GoogleDriveClientTest  extends FileStorageContractTestBase {
         return googleDriveFileStorageImplementor;
     }
 }
-
-

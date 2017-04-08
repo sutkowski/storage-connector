@@ -8,12 +8,12 @@ import java.nio.file.Paths;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class FileSystemFileStorageTest {
+public class FileSystemFileStorageImplementorTest {
 
     @Test
     public void shouldResolveAbsolutePath() throws Exception {
         final String baseDirectory = "/tmp/";
-        final FileSystemFileStorage fileSystemFileStorage = new FileSystemFileStorage(baseDirectory);
+        final FileSystemFileStorageImplementor fileSystemFileStorage = new FileSystemFileStorageImplementor(baseDirectory);
 
         PathFileLocationHolder url = new PathFileLocationHolder(Paths.get("/path"));
         final FileLocationHolder path = fileSystemFileStorage.resolveAbsolutePath(url);

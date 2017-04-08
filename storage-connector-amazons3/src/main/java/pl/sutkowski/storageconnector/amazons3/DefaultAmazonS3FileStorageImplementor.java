@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import pl.sutkowski.api.FileHolder;
 import pl.sutkowski.api.FileLocationHolder;
-import pl.sutkowski.api.FileStorage;
 import pl.sutkowski.api.exception.FileStorageException;
 import pl.sutkowski.api.impl.ByteFileHolder;
 import pl.sutkowski.api.utils.FileStorageUtils;
@@ -15,13 +14,13 @@ import pl.sutkowski.api.utils.FileStorageUtils;
 import java.io.ByteArrayInputStream;
 
 @Slf4j
-public class DefaultAmazonS3FileStorage implements AmazonS3FileStorage {
+public class DefaultAmazonS3FileStorageImplementor implements AmazonS3FileStorageImplementor {
 
     private final AmazonS3Client client;
     private final String bucketName;
 
     @Autowired
-    public DefaultAmazonS3FileStorage(AmazonS3Client client, String bucketName) {
+    public DefaultAmazonS3FileStorageImplementor(AmazonS3Client client, String bucketName) {
         this.client = client;
         this.bucketName = bucketName;
     }

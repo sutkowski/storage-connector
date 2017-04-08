@@ -11,7 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-import pl.sutkowski.api.FileStorage;
+import pl.sutkowski.api.FileStorageImplementor;
 import pl.sutkowski.storageconnector.amazons3.impl.AmazonS3ConfigProvider;
 import pl.sutkowski.storageconnector.amazons3.impl.PropertiesAmazonS3ConfigProvider;
 
@@ -46,8 +46,8 @@ public class AmazonS3TestConfig {
     }
 
     @Bean
-    public FileStorage fileStorage(AmazonS3Client amazonS3Client, AmazonS3ConfigProvider amazonS3ConfigProvider) {
-        return new DefaultAmazonS3FileStorage(amazonS3Client, amazonS3ConfigProvider.getBucketName());
+    public FileStorageImplementor fileStorage(AmazonS3Client amazonS3Client, AmazonS3ConfigProvider amazonS3ConfigProvider) {
+        return new DefaultAmazonS3FileStorageImplementor(amazonS3Client, amazonS3ConfigProvider.getBucketName());
     }
 
 }

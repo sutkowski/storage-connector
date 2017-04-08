@@ -2,7 +2,7 @@ package pl.sutkowski.storageconnector.filesystem;
 
 import pl.sutkowski.api.FileHolder;
 import pl.sutkowski.api.FileLocationHolder;
-import pl.sutkowski.api.FileStorage;
+import pl.sutkowski.api.FileStorageImplementor;
 import pl.sutkowski.api.exception.FileStorageException;
 import pl.sutkowski.api.impl.ByteFileHolder;
 import pl.sutkowski.api.impl.PathFileLocationHolder;
@@ -13,12 +13,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class FileSystemFileStorage
-        implements FileStorage {
+public class FileSystemFileStorageImplementor
+        implements FileStorageImplementor {
 
     private final Path baseDirectory;
 
-    public FileSystemFileStorage(String baseDirectory) {
+    public FileSystemFileStorageImplementor(String baseDirectory) {
         this.baseDirectory = Paths.get(baseDirectory);
         FileStorageUtils.createDirectoryIfNotExists(this.baseDirectory);
     }
