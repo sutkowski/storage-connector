@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.sutkowski.api.FileHolder;
 import pl.sutkowski.api.FileLocationHolder;
+import pl.sutkowski.api.FileStorageImplementor;
 import pl.sutkowski.api.impl.ByteFileHolder;
 import pl.sutkowski.storageconnector.test.base.AbstractTestBase;
 
@@ -112,4 +113,6 @@ public abstract class FileStoragePerformanceTestBase extends AbstractTestBase {
         }
     }
 
+    @Override
+    public abstract FileStorageImplementor getFileStorage();
 }

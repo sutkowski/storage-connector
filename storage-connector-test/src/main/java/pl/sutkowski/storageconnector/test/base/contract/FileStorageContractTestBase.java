@@ -5,11 +5,12 @@ import org.junit.After;
 import org.junit.Test;
 import pl.sutkowski.api.FileHolder;
 import pl.sutkowski.api.FileLocationHolder;
+import pl.sutkowski.api.FileStorageImplementor;
 import pl.sutkowski.api.exception.FileStorageException;
 import pl.sutkowski.storageconnector.test.base.AbstractTestBase;
+import pl.sutkowski.storageconnector.test.utils.TmpDataContentProvider;
 
 import java.nio.file.Paths;
-import pl.sutkowski.storageconnector.test.utils.TmpDataContentProvider;
 
 public abstract class FileStorageContractTestBase extends AbstractTestBase {
 
@@ -28,7 +29,7 @@ public abstract class FileStorageContractTestBase extends AbstractTestBase {
     public void shouldUploadFileAndDownloadIt() throws Exception {
 
         url = getFileStorage().upload(getTmpDataContent());
-        FileHolder  download = getFileStorage().download(url);
+        FileHolder download = getFileStorage().download(url);
 
         Assertions.assertThat(download).isEqualTo(getTmpDataContent());
     }
@@ -38,7 +39,7 @@ public abstract class FileStorageContractTestBase extends AbstractTestBase {
         FileLocationHolder path = getFileStorage().produceFileLocationHolder(Paths.get("/path/file"));
 
         url = getFileStorage().upload(getTmpDataContent(), path);
-        FileHolder  download = getFileStorage().download(url);
+        FileHolder download = getFileStorage().download(url);
 
         Assertions.assertThat(download).isEqualTo(getTmpDataContent());
     }
@@ -81,9 +82,9 @@ public abstract class FileStorageContractTestBase extends AbstractTestBase {
     public void shouldMoveUploadedFile() throws Exception {
         FileLocationHolder path1 = getFileStorage().produceFileLocationHolder(Paths.get("/path1/file"));
         FileLocationHolder path2 = getFileStorage().produceFileLocationHolder(Paths.get("/path2/file"));
-        url = getFileStorage().upload(getTmpDataContent(),path1);
+        url = getFileStorage().upload(getTmpDataContent(), path1);
         url = getFileStorage().move(url, path2);
-        FileHolder  download = getFileStorage().download(url);
+        FileHolder download = getFileStorage().download(url);
 
         Assertions.assertThat(download).isEqualTo(getTmpDataContent());
     }
@@ -92,4 +93,6 @@ public abstract class FileStorageContractTestBase extends AbstractTestBase {
         return new TmpDataContentProvider().getContent();
     }
 
+    @Override
+    public abstract FileStorageImplementor getFileStorage();
 }

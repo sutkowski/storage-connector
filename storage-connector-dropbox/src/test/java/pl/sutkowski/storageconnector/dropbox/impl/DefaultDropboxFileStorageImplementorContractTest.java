@@ -6,7 +6,6 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pl.sutkowski.api.FileStorageImplementor;
-import pl.sutkowski.api.FileStorageProvider;
 import pl.sutkowski.storageconnector.test.base.contract.FileStorageContractTestBase;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -18,8 +17,7 @@ public class DefaultDropboxFileStorageImplementorContractTest extends FileStorag
     FileStorageImplementor fileStorageImplementor;
 
     @Override
-    public FileStorageProvider getFileStorageProvider() {
-        return () -> fileStorageImplementor;
+    public FileStorageImplementor getFileStorage(){
+        return fileStorageImplementor;
     }
-
 }
