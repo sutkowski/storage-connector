@@ -6,7 +6,7 @@ import pl.sutkowski.storageconnector.test.base.contract.FileStorageContractTestB
 public class InMemoryFileStorageImplementorContractTest extends FileStorageContractTestBase {
 
     @Override
-    public FileStorageImplementor getFileStorage(){
+    public FileStorageImplementor getFileStorageImplementor(){
         return new InMemoryFileStorageImplementor();
     }
 }

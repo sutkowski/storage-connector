@@ -17,7 +17,7 @@ public class DefaultDropboxFileStorageImplementorContractTest extends FileStorag
     FileStorageImplementor fileStorageImplementor;
 
     @Override
-    public FileStorageImplementor getFileStorage(){
+    public FileStorageImplementor getFileStorageImplementor(){
         return fileStorageImplementor;
     }
 }

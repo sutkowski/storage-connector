@@ -18,7 +18,7 @@ public class DefaultAmazonS3FileStorageImplementorTest extends FileStorageContra
     FileStorageImplementor fileStorageImplementor;
 
     @Override
-    public FileStorageImplementor getFileStorage(){
+    public FileStorageImplementor getFileStorageImplementor(){
         return fileStorageImplementor;
     }
 }

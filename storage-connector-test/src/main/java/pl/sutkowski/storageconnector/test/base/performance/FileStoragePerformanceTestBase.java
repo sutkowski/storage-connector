@@ -6,7 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.sutkowski.api.FileHolder;
 import pl.sutkowski.api.FileLocationHolder;
-import pl.sutkowski.api.FileStorageImplementor;
 import pl.sutkowski.api.impl.ByteFileHolder;
 import pl.sutkowski.storageconnector.test.base.AbstractTestBase;
 
@@ -62,18 +61,18 @@ public abstract class FileStoragePerformanceTestBase extends AbstractTestBase {
     private void uploadFile(FileHolder fileHolder) {
         final long beginTime = System.currentTimeMillis();
 
-        getFileStorage().upload(fileHolder);
+        getFileStorageImplementor().upload(fileHolder);
 
         final long endTime = System.currentTimeMillis();
         logExecutionTime(endTime - beginTime, fileHolder.getBytes().length, "upload");
     }
 
     private void downloadFile(FileHolder fileHolder) {
-        final FileLocationHolder upload = getFileStorage().upload(fileHolder);
+        final FileLocationHolder upload = getFileStorageImplementor().upload(fileHolder);
 
         final long beginTime = System.currentTimeMillis();
 
-        final FileHolder download = getFileStorage().download(upload);
+        final FileHolder download = getFileStorageImplementor().download(upload);
 
         final long endTime = System.currentTimeMillis();
         logExecutionTime(endTime - beginTime, fileHolder.getBytes().length, "download");
@@ -82,11 +81,11 @@ public abstract class FileStoragePerformanceTestBase extends AbstractTestBase {
     }
 
     private void removeFile(FileHolder fileHolder) {
-        final FileLocationHolder upload = getFileStorage().upload(fileHolder);
+        final FileLocationHolder upload = getFileStorageImplementor().upload(fileHolder);
 
         final long beginTime = System.currentTimeMillis();
 
-        getFileStorage().remove(upload);
+        getFileStorageImplementor().remove(upload);
 
         final long endTime = System.currentTimeMillis();
         logExecutionTime(endTime - beginTime, fileHolder.getBytes().length, "remove");
@@ -100,7 +99,7 @@ public abstract class FileStoragePerformanceTestBase extends AbstractTestBase {
             final TestExecutionData executionData = TestExecutionData.builder()
                     .executionTime(nanos)
                     .fileSize(fileSize)
-                    .implementation(getFileStorage().getClass().getSimpleName())
+                    .implementation(getFileStorageImplementor().getClass().getSimpleName())
                     .testName(testName)
                     .build();
 
@@ -113,6 +112,4 @@ public abstract class FileStoragePerformanceTestBase extends AbstractTestBase {
         }
     }
 
-    @Override
-    public abstract FileStorageImplementor getFileStorage();
 }

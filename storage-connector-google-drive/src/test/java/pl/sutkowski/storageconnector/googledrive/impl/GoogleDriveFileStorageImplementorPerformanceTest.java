@@ -17,7 +17,7 @@ public class GoogleDriveFileStorageImplementorPerformanceTest extends FileStorag
     FileStorageImplementor googleDriveFileStorageImplementor;
 
     @Override
-    public FileStorageImplementor getFileStorage(){
+    public FileStorageImplementor getFileStorageImplementor(){
         return googleDriveFileStorageImplementor;
     }
 }

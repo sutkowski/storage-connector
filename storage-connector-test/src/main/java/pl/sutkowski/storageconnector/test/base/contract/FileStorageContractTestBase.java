@@ -5,7 +5,6 @@ import org.junit.After;
 import org.junit.Test;
 import pl.sutkowski.api.FileHolder;
 import pl.sutkowski.api.FileLocationHolder;
-import pl.sutkowski.api.FileStorageImplementor;
 import pl.sutkowski.api.exception.FileStorageException;
 import pl.sutkowski.storageconnector.test.base.AbstractTestBase;
 import pl.sutkowski.storageconnector.test.utils.TmpDataContentProvider;
@@ -19,7 +18,7 @@ public abstract class FileStorageContractTestBase extends AbstractTestBase {
     @After
     public void cleanUp() throws Exception {
         try {
-            getFileStorage().remove(url);
+            getFileStorageImplementor().remove(url);
         } catch (FileStorageException ex) {
             //This was intentionally left blank
         }
@@ -28,18 +27,18 @@ public abstract class FileStorageContractTestBase extends AbstractTestBase {
     @Test
     public void shouldUploadFileAndDownloadIt() throws Exception {
 
-        url = getFileStorage().upload(getTmpDataContent());
-        FileHolder download = getFileStorage().download(url);
+        url = getFileStorageImplementor().upload(getTmpDataContent());
+        FileHolder download = getFileStorageImplementor().download(url);
 
         Assertions.assertThat(download).isEqualTo(getTmpDataContent());
     }
 
     @Test
     public void shouldUploadFileInFolderAndDownloadIt() throws Exception {
-        FileLocationHolder path = getFileStorage().produceFileLocationHolder(Paths.get("/path/file"));
+        FileLocationHolder path = getFileStorageImplementor().produceFileLocationHolder(Paths.get("/path/file"));
 
-        url = getFileStorage().upload(getTmpDataContent(), path);
-        FileHolder download = getFileStorage().download(url);
+        url = getFileStorageImplementor().upload(getTmpDataContent(), path);
+        FileHolder download = getFileStorageImplementor().download(url);
 
         Assertions.assertThat(download).isEqualTo(getTmpDataContent());
     }
@@ -47,44 +46,44 @@ public abstract class FileStorageContractTestBase extends AbstractTestBase {
     @Test
     public void shouldReturnFileStorageExceptionWhenDownloadingNonExistingFile() throws Exception {
 
-        url = getFileStorage().produceFileLocationHolder(Paths.get(""));
+        url = getFileStorageImplementor().produceFileLocationHolder(Paths.get(""));
 
         thrown.expect(FileStorageException.class);
-        getFileStorage().download(url);
+        getFileStorageImplementor().download(url);
     }
 
     @Test
     public void afterDeleteDownloadShouldReturnFileStorageException() throws Exception {
 
-        url = getFileStorage().upload(getTmpDataContent());
-        getFileStorage().remove(url);
+        url = getFileStorageImplementor().upload(getTmpDataContent());
+        getFileStorageImplementor().remove(url);
 
         thrown.expect(FileStorageException.class);
-        getFileStorage().download(url);
+        getFileStorageImplementor().download(url);
     }
 
     @Test
     public void shouldReturnErrorWhenAttemptingToRemoveFileWithEmptyNameAndPath() throws Exception {
-        url = getFileStorage().produceFileLocationHolder(Paths.get(""));
+        url = getFileStorageImplementor().produceFileLocationHolder(Paths.get(""));
         thrown.expect(FileStorageException.class);
-        getFileStorage().remove(url);
+        getFileStorageImplementor().remove(url);
     }
 
     @Test
     public void shouldReturnErrorWhenAttemptingToRemoveNonExistingFile() throws Exception {
-        url = getFileStorage().produceFileLocationHolder(Paths.get("non-existing-file"));
+        url = getFileStorageImplementor().produceFileLocationHolder(Paths.get("non-existing-file"));
         thrown.expect(FileStorageException.class);
-        getFileStorage().remove(url);
+        getFileStorageImplementor().remove(url);
     }
 
 
     @Test
     public void shouldMoveUploadedFile() throws Exception {
-        FileLocationHolder path1 = getFileStorage().produceFileLocationHolder(Paths.get("/path1/file"));
-        FileLocationHolder path2 = getFileStorage().produceFileLocationHolder(Paths.get("/path2/file"));
-        url = getFileStorage().upload(getTmpDataContent(), path1);
-        url = getFileStorage().move(url, path2);
-        FileHolder download = getFileStorage().download(url);
+        FileLocationHolder path1 = getFileStorageImplementor().produceFileLocationHolder(Paths.get("/path1/file"));
+        FileLocationHolder path2 = getFileStorageImplementor().produceFileLocationHolder(Paths.get("/path2/file"));
+        url = getFileStorageImplementor().upload(getTmpDataContent(), path1);
+        url = getFileStorageImplementor().move(url, path2);
+        FileHolder download = getFileStorageImplementor().download(url);
 
         Assertions.assertThat(download).isEqualTo(getTmpDataContent());
     }
@@ -93,6 +92,4 @@ public abstract class FileStorageContractTestBase extends AbstractTestBase {
         return new TmpDataContentProvider().getContent();
     }
 
-    @Override
-    public abstract FileStorageImplementor getFileStorage();
 }

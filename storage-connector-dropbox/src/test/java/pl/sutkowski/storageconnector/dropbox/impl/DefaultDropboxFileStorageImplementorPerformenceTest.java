@@ -17,7 +17,7 @@ public class DefaultDropboxFileStorageImplementorPerformenceTest extends FileSto
     FileStorageImplementor fileStorageImplementor;
 
     @Override
-    public FileStorageImplementor getFileStorage(){
+    public FileStorageImplementor getFileStorageImplementor(){
         return fileStorageImplementor;
     }
 }

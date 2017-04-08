@@ -17,7 +17,7 @@ public class GoogleDriveClientTest  extends FileStorageContractTestBase {
     FileStorageImplementor googleDriveFileStorageImplementor;
 
     @Override
-    public FileStorageImplementor getFileStorage(){
+    public FileStorageImplementor getFileStorageImplementor(){
         return googleDriveFileStorageImplementor;
     }
 }

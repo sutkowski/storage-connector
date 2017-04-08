@@ -9,6 +9,6 @@ public abstract class AbstractTestBase {
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
-    public abstract FileStorageImplementor getFileStorage();
+    public abstract FileStorageImplementor getFileStorageImplementor();
 
 }

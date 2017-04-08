@@ -6,7 +6,7 @@ import pl.sutkowski.storageconnector.test.base.performance.FileStoragePerformanc
 public class InMemoryFileStorageImplementorPerformanceTest extends FileStoragePerformanceTestBase {
 
     @Override
-    public FileStorageImplementor getFileStorage(){
+    public FileStorageImplementor getFileStorageImplementor(){
         return new InMemoryFileStorageImplementor();
     }
 }

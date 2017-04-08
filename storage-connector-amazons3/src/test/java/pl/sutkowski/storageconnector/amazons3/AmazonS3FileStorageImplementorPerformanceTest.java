@@ -18,7 +18,7 @@ public class AmazonS3FileStorageImplementorPerformanceTest extends FileStoragePe
     FileStorageImplementor fileStorageImplementor;
 
     @Override
-    public FileStorageImplementor getFileStorage(){
+    public FileStorageImplementor getFileStorageImplementor(){
         return fileStorageImplementor;
     }
 }
