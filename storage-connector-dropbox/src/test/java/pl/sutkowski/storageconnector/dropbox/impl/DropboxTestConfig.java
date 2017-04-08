@@ -6,8 +6,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-import pl.sutkowski.api.FileStorage;
-import pl.sutkowski.storageconnector.dropbox.DefaultDropboxFileStorage;
+import pl.sutkowski.api.FileStorageImplementor;
+import pl.sutkowski.storageconnector.dropbox.DefaultDropboxFileStorageImplementor;
 
 @Configuration
 @PropertySource(value = "file:${user.home}/dropbox.yml", ignoreResourceNotFound = false)
@@ -20,8 +20,8 @@ public class DropboxTestConfig {
     }
 
     @Bean
-    public FileStorage fileStorage(DropboxClient dropboxClient) {
-        return new DefaultDropboxFileStorage(dropboxClient);
+    public FileStorageImplementor fileStorage(DropboxClient dropboxClient) {
+        return new DefaultDropboxFileStorageImplementor(dropboxClient);
     }
 
     @Bean

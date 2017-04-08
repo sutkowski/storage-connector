@@ -8,7 +8,7 @@ import com.google.api.services.drive.model.File;
 import org.springframework.beans.factory.annotation.Autowired;
 import pl.sutkowski.api.FileHolder;
 import pl.sutkowski.api.FileLocationHolder;
-import pl.sutkowski.api.FileStorage;
+import pl.sutkowski.api.FileStorageImplementor;
 import pl.sutkowski.api.exception.FileStorageException;
 import pl.sutkowski.api.impl.ByteFileHolder;
 import pl.sutkowski.api.utils.FileStorageUtils;
@@ -19,13 +19,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Path;
 
-public class DefaultGoogleDriveFileStorage implements FileStorage {
+public class DefaultGoogleDriveFileStorageImplementor implements FileStorageImplementor {
 
     final GoogleDriveClient googleDriveClient;
     private Drive drive;
 
     @Autowired
-    public DefaultGoogleDriveFileStorage(GoogleDriveClient googleDriveClient) {
+    public DefaultGoogleDriveFileStorageImplementor(GoogleDriveClient googleDriveClient) {
         this.googleDriveClient = googleDriveClient;
         this.drive = googleDriveClient.getDrive();
     }

@@ -15,12 +15,12 @@ import pl.sutkowski.storageconnector.dropbox.impl.DropboxClient;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
-public class DefaultDropboxFileStorage implements DropboxFileStorage {
+public class DefaultDropboxFileStorageImplementor implements DropboxFileStorageImplementor {
 
     private DbxClient client;
 
     @Autowired
-    public DefaultDropboxFileStorage(DropboxClient dropboxClient) {
+    public DefaultDropboxFileStorageImplementor(DropboxClient dropboxClient) {
         client = dropboxClient.getClient();
     }
 

@@ -6,8 +6,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-import pl.sutkowski.api.FileStorage;
-import pl.sutkowski.storageconnector.googledrive.DefaultGoogleDriveFileStorage;
+import pl.sutkowski.api.FileStorageImplementor;
+import pl.sutkowski.storageconnector.googledrive.DefaultGoogleDriveFileStorageImplementor;
 import pl.sutkowski.storageconnector.googledrive.authorization.GoogleAuthorization;
 import pl.sutkowski.storageconnector.googledrive.authorization.GoogleDriveCredentialsProvider;
 import pl.sutkowski.storageconnector.googledrive.authorization.impl.PropertiesGoogleDriveCredentialsProvider;
@@ -25,8 +25,8 @@ public class GoogleDriveTestConfig {
     }
 
     @Bean
-    public FileStorage fileStorage(GoogleDriveClient googleDriveClient) {
-        return new DefaultGoogleDriveFileStorage(googleDriveClient);
+    public FileStorageImplementor fileStorage(GoogleDriveClient googleDriveClient) {
+        return new DefaultGoogleDriveFileStorageImplementor(googleDriveClient);
     }
 
     @Bean

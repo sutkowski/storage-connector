@@ -4,23 +4,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.sutkowski.api.FileHolder;
 import pl.sutkowski.api.FileLocationHolder;
-import pl.sutkowski.api.FileStorage;
+import pl.sutkowski.api.FileStorageImplementor;
 
 @Service
 public class SampleGoogleDriveFileStorageService {
 
     @Autowired
-    FileStorage fileStorage;
+    FileStorageImplementor fileStorageImplementor;
 
     public FileHolder download(FileLocationHolder url) {
-        return fileStorage.download(url);
+        return fileStorageImplementor.download(url);
     }
 
     public void remove(FileLocationHolder url) {
-        fileStorage.remove(url);
+        fileStorageImplementor.remove(url);
     }
 
     public FileLocationHolder upload(FileHolder content) {
-        return fileStorage.upload(content);
+        return fileStorageImplementor.upload(content);
     }
 }

@@ -2,7 +2,7 @@ package pl.sutkowski.storageconnector.test.base;
 
 import org.junit.Rule;
 import org.junit.rules.ExpectedException;
-import pl.sutkowski.api.FileStorage;
+import pl.sutkowski.api.FileStorageImplementor;
 import pl.sutkowski.api.FileStorageProvider;
 
 public abstract class AbstractTestBase {
@@ -12,7 +12,7 @@ public abstract class AbstractTestBase {
 
     protected abstract FileStorageProvider getFileStorageProvider();
 
-    protected FileStorage getFileStorage(){
+    protected FileStorageImplementor getFileStorage(){
         return getFileStorageProvider().getFileStorage();
     }
 

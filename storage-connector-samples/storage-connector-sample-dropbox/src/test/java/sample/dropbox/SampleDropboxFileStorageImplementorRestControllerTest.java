@@ -6,15 +6,15 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import pl.sutkowski.api.FileStorage;
-import pl.sutkowski.storageconnector.dropbox.DropboxFileStorage;
+import pl.sutkowski.api.FileStorageImplementor;
+import pl.sutkowski.storageconnector.dropbox.DropboxFileStorageImplementor;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = SampleDropboxFileStorageApplication.class)
-public class SampleDropboxFileStorageRestControllerTest {
+public class SampleDropboxFileStorageImplementorRestControllerTest {
 
     @Autowired
-    FileStorage fileStorage;
+    FileStorageImplementor fileStorageImplementor;
 
     @Test
     public void contextLoads() {
@@ -22,8 +22,8 @@ public class SampleDropboxFileStorageRestControllerTest {
 
     @Test
     public void fileStorageShouldBeInstanceOfDropbox() {
-        Assertions.assertThat(fileStorage).isNotNull();
-        Assertions.assertThat(fileStorage instanceof DropboxFileStorage).isTrue();
+        Assertions.assertThat(fileStorageImplementor).isNotNull();
+        Assertions.assertThat(fileStorageImplementor instanceof DropboxFileStorageImplementor).isTrue();
     }
 
 }

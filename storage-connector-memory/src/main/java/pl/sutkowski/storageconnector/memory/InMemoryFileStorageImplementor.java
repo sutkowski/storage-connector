@@ -7,12 +7,12 @@ import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import pl.sutkowski.api.FileHolder;
 import pl.sutkowski.api.FileLocationHolder;
-import pl.sutkowski.api.FileStorage;
+import pl.sutkowski.api.FileStorageImplementor;
 import pl.sutkowski.api.exception.FileStorageException;
 import pl.sutkowski.api.impl.PathFileLocationHolder;
 
-public class InMemoryFileStorage
-        implements FileStorage {
+public class InMemoryFileStorageImplementor
+        implements FileStorageImplementor {
 
     private static final Map<Path, FileHolder > FILES = Collections.synchronizedMap(new ConcurrentHashMap<>());
 
