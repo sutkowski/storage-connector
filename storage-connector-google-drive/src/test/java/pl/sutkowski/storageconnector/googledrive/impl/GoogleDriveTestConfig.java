@@ -10,7 +10,6 @@ import pl.sutkowski.api.FileStorageImplementor;
 import pl.sutkowski.storageconnector.googledrive.DefaultGoogleDriveFileStorageImplementor;
 import pl.sutkowski.storageconnector.googledrive.authorization.GoogleAuthorization;
 import pl.sutkowski.storageconnector.googledrive.authorization.GoogleDriveCredentialsProvider;
-import pl.sutkowski.storageconnector.googledrive.authorization.impl.PropertiesGoogleDriveCredentialsProvider;
 import pl.sutkowski.storageconnector.googledrive.authorization.impl.StreamGoogleAuthorization;
 
 
@@ -41,6 +40,6 @@ public class GoogleDriveTestConfig {
 
     @Bean
     public GoogleDriveCredentialsProvider googleDriveCredentialsProvider() {
-        return new PropertiesGoogleDriveCredentialsProvider();
+        return new TestGoogleDriveCredentialsProvider();
     }
 }

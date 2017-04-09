@@ -1,4 +1,4 @@
-package pl.sutkowski.storageconnector.googledrive.authorization.impl;
+package pl.sutkowski.storageconnector.autoconfigure.googledrive;
 
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;

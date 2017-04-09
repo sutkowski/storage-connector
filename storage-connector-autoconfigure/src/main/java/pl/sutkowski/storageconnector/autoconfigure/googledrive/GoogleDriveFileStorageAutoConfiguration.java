@@ -13,7 +13,6 @@ import pl.sutkowski.api.FileStorageImplementor;
 import pl.sutkowski.storageconnector.googledrive.DefaultGoogleDriveFileStorageImplementor;
 import pl.sutkowski.storageconnector.googledrive.authorization.GoogleAuthorization;
 import pl.sutkowski.storageconnector.googledrive.authorization.GoogleDriveCredentialsProvider;
-import pl.sutkowski.storageconnector.googledrive.authorization.impl.PropertiesGoogleDriveCredentialsProvider;
 import pl.sutkowski.storageconnector.googledrive.authorization.impl.StreamGoogleAuthorization;
 import pl.sutkowski.storageconnector.googledrive.impl.GoogleDriveClient;
 
