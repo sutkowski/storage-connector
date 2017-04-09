@@ -4,7 +4,6 @@ import com.dropbox.core.DbxClient;
 import com.dropbox.core.DbxEntry;
 import com.dropbox.core.DbxException;
 import com.dropbox.core.DbxWriteMode;
-import org.springframework.beans.factory.annotation.Autowired;
 import pl.sutkowski.api.FileHolder;
 import pl.sutkowski.api.FileLocationHolder;
 import pl.sutkowski.api.exception.FileStorageException;
@@ -19,7 +18,6 @@ public class DefaultDropboxFileStorageImplementor implements DropboxFileStorageI
 
     private DbxClient client;
 
-    @Autowired
     public DefaultDropboxFileStorageImplementor(DropboxClient dropboxClient) {
         client = dropboxClient.getClient();
     }

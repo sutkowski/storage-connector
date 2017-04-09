@@ -26,7 +26,7 @@ public class DropboxTestConfig {
 
     @Bean
     public DropboxCredentialsProvider dropboxCredentialsProvider() {
-        return new PropertiesDropboxCredentialsProvider();
+        return new TestDropboxCredentialsProvider();
     }
 
     @Bean

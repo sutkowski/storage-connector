@@ -13,7 +13,6 @@ import pl.sutkowski.api.FileStorageImplementor;
 import pl.sutkowski.storageconnector.dropbox.DefaultDropboxFileStorageImplementor;
 import pl.sutkowski.storageconnector.dropbox.impl.DropboxClient;
 import pl.sutkowski.storageconnector.dropbox.impl.DropboxCredentialsProvider;
-import pl.sutkowski.storageconnector.dropbox.impl.PropertiesDropboxCredentialsProvider;
 
 @Configuration
 @ConditionalOnClass(DefaultDropboxFileStorageImplementor.class)
