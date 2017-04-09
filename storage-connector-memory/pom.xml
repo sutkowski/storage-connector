@@ -20,10 +20,6 @@
             <artifactId>storage-connector-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-        </dependency>
-        <dependency>
             <groupId>pl.sutkowski</groupId>
             <artifactId>storage-connector-test</artifactId>
             <scope>test</scope>
