@@ -37,6 +37,7 @@ public class AmazonS3FileStorageAutoConfiguration {
     }
 
     @Bean
+    @ConditionalOnMissingBean(AmazonS3ConfigProvider.class)
     AmazonS3ConfigProvider amazonS3ConfigProvider() {
         return new PropertiesAmazonS3ConfigProvider();
     }
