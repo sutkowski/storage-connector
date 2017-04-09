@@ -13,7 +13,6 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import pl.sutkowski.api.FileStorageImplementor;
 import pl.sutkowski.storageconnector.amazons3.impl.AmazonS3ConfigProvider;
-import pl.sutkowski.storageconnector.amazons3.impl.PropertiesAmazonS3ConfigProvider;
 
 @Configuration
 @PropertySource(value = "file:${user.home}/amazons3.yml", ignoreResourceNotFound = false)
@@ -22,7 +21,7 @@ public class AmazonS3TestConfig {
 
     @Bean
     AmazonS3ConfigProvider amazonS3ConfigProvider() {
-        return new PropertiesAmazonS3ConfigProvider();
+        return new TestAmazonS3ConfigProvider();
     }
 
     @Bean

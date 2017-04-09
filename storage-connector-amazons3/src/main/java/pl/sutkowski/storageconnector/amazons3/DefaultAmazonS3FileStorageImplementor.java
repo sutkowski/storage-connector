@@ -3,7 +3,6 @@ package pl.sutkowski.storageconnector.amazons3;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.*;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import pl.sutkowski.api.FileHolder;
 import pl.sutkowski.api.FileLocationHolder;
@@ -19,7 +18,6 @@ public class DefaultAmazonS3FileStorageImplementor implements AmazonS3FileStorag
     private final AmazonS3Client client;
     private final String bucketName;
 
-    @Autowired
     public DefaultAmazonS3FileStorageImplementor(AmazonS3Client client, String bucketName) {
         this.client = client;
         this.bucketName = bucketName;

@@ -17,7 +17,6 @@ import pl.sutkowski.api.FileStorageImplementation;
 import pl.sutkowski.api.FileStorageImplementor;
 import pl.sutkowski.storageconnector.amazons3.DefaultAmazonS3FileStorageImplementor;
 import pl.sutkowski.storageconnector.amazons3.impl.AmazonS3ConfigProvider;
-import pl.sutkowski.storageconnector.amazons3.impl.PropertiesAmazonS3ConfigProvider;
 
 @Configuration
 @ConditionalOnClass(DefaultAmazonS3FileStorageImplementor.class)
