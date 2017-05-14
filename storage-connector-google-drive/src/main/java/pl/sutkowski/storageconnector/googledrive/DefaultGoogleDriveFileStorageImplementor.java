@@ -17,6 +17,7 @@ import pl.sutkowski.storageconnector.googledrive.impl.holder.GoogleDriveFileLoca
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Path;
+import java.util.Objects;
 
 public class DefaultGoogleDriveFileStorageImplementor implements FileStorageImplementor {
 
@@ -93,6 +94,9 @@ public class DefaultGoogleDriveFileStorageImplementor implements FileStorageImpl
     }
 
     private void assertGoogleDriveFileLocationHolder(FileLocationHolder genericUrl) {
+        if(Objects.isNull(genericUrl)) {
+            throw FileStorageException.pathNotFound();
+        }
         if (!(genericUrl instanceof GoogleDriveFileLocationHolder)) {
             throw new IllegalArgumentException("Not Supported Location Holder instance");
         }

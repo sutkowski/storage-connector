@@ -6,14 +6,16 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 import pl.sutkowski.api.FileHolder;
 import pl.sutkowski.api.FileLocationHolder;
+import pl.sutkowski.api.FileStorageImplementor;
 import pl.sutkowski.api.exception.FileStorageException;
 import pl.sutkowski.api.impl.ByteFileHolder;
 import pl.sutkowski.api.utils.FileStorageUtils;
 
 import java.io.ByteArrayInputStream;
+import java.util.Objects;
 
 @Slf4j
-public class DefaultAmazonS3FileStorageImplementor implements AmazonS3FileStorageImplementor {
+public class DefaultAmazonS3FileStorageImplementor implements FileStorageImplementor {
 
     private final AmazonS3Client client;
     private final String bucketName;
@@ -36,6 +38,9 @@ public class DefaultAmazonS3FileStorageImplementor implements AmazonS3FileStorag
 
     @Override
     public void remove(FileLocationHolder url) {
+        if(Objects.isNull(url)) {
+            throw FileStorageException.pathNotFound();
+        }
         if (StringUtils.isEmpty(url.getPathAsString()) || !client.doesObjectExist(bucketName, url.getPathAsString())) {
             throw FileStorageException.fileNotFound(url.getPath());
         }

@@ -8,7 +8,7 @@ public final class TmpDataContentProvider
 
     @Override
     public FileHolder getContent() {
-        return new ByteFileHolder("tmp".getBytes());
+        return ByteFileHolder.of("tmp");
     }
 
 }

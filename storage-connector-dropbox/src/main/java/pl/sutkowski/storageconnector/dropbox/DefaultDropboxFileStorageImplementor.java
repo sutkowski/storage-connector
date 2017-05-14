@@ -13,6 +13,7 @@ import pl.sutkowski.storageconnector.dropbox.impl.DropboxClient;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.util.Objects;
 
 public class DefaultDropboxFileStorageImplementor implements DropboxFileStorageImplementor {
 
@@ -23,7 +24,7 @@ public class DefaultDropboxFileStorageImplementor implements DropboxFileStorageI
     }
 
     @Override
-    public FileLocationHolder upload(FileHolder  content, FileLocationHolder url) {
+    public FileLocationHolder upload(FileHolder content, FileLocationHolder url) {
         try (ByteArrayInputStream inputStream = new ByteArrayInputStream(content.getBytes())) {
             client.uploadFile(FileStorageUtils.getFullPath(url), DbxWriteMode.add(), content.getBytes().length, inputStream);
             return url;
@@ -47,6 +48,9 @@ public class DefaultDropboxFileStorageImplementor implements DropboxFileStorageI
 
     @Override
     public void remove(FileLocationHolder url) {
+        if(Objects.isNull(url)) {
+            throw FileStorageException.pathNotFound();
+        }
         try {
             client.delete(FileStorageUtils.getFullPath(url));
         } catch (Exception e) {
