@@ -50,9 +50,21 @@ public abstract class FileStorageContractTestBase extends AbstractTestBase {
 
     @Test
     public void shouldUploadFileInFolderUsingBatchSaveAndDownloadIt() throws Exception {
-
         Map<FileLocationHolder, FileHolder> files = Collections.singletonMap(
                 getFileStorageImplementor().produceFileLocationHolder(Paths.get("/path/file")), getTmpDataContent());
+        List<FileLocationHolder> fileLocationHolders = getFileStorageImplementor().batchUpload(files);
+
+        Assertions.assertThat(fileLocationHolders).hasSize(1);
+        url = fileLocationHolders.get(0);
+
+        FileHolder download = getFileStorageImplementor().download(url);
+
+        Assertions.assertThat(download).isEqualTo(getTmpDataContent());
+    }
+
+    @Test
+    public void shouldUploadFileUsingBatchSaveAndDownloadIt() throws Exception {
+        List<FileHolder> files = Collections.singletonList(getTmpDataContent());
         List<FileLocationHolder> fileLocationHolders = getFileStorageImplementor().batchUpload(files);
 
         Assertions.assertThat(fileLocationHolders).hasSize(1);
@@ -71,6 +83,23 @@ public abstract class FileStorageContractTestBase extends AbstractTestBase {
         FileHolder tmpDataContent2 = ByteFileHolder.of("Another test data");
         files.put(getFileStorageImplementor().produceFileLocationHolder(Paths.get("/path/file1")), tmpDataContent1);
         files.put(getFileStorageImplementor().produceFileLocationHolder(Paths.get("/path/file2")), tmpDataContent2);
+
+        List<FileLocationHolder> urls = getFileStorageImplementor().batchUpload(files);
+
+        Assertions.assertThat(urls).hasSize(2);
+
+        Assertions.assertThat(
+                urls.stream().map(url -> getFileStorageImplementor().download(url)).collect(toList()))
+                .containsOnly(tmpDataContent1, tmpDataContent2);
+    }
+
+    @Test
+    public void shouldUploadFilesUsingBatchSaveAndDownloadThem() throws Exception {
+        FileHolder tmpDataContent1 = ByteFileHolder.of("Some test data");
+        FileHolder tmpDataContent2 = ByteFileHolder.of("Another test data");
+        List<FileHolder> files = Lists.newArrayList();
+        files.add(tmpDataContent1);
+        files.add(tmpDataContent2);
 
         List<FileLocationHolder> urls = getFileStorageImplementor().batchUpload(files);
 

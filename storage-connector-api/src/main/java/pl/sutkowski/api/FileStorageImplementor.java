@@ -44,4 +44,8 @@ public interface FileStorageImplementor {
     default List<FileLocationHolder> batchUpload(Map<FileLocationHolder, FileHolder> files) {
         return files.keySet().parallelStream().map(key -> upload(files.get(key), key)).collect(toList());
     }
+
+    default List<FileLocationHolder> batchUpload(List<FileHolder> files) {
+        return files.parallelStream().map(holder -> upload(holder)).collect(toList());
+    }
 }
