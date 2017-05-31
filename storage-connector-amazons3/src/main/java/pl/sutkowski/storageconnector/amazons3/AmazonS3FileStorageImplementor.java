@@ -1,7 +1,13 @@
 package pl.sutkowski.storageconnector.amazons3;
 
 import com.amazonaws.services.s3.AmazonS3Client;
-import com.amazonaws.services.s3.model.*;
+import com.amazonaws.services.s3.model.DeleteObjectRequest;
+import com.amazonaws.services.s3.model.GetObjectRequest;
+import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.amazonaws.services.s3.model.S3Object;
+import java.io.ByteArrayInputStream;
+import java.util.Objects;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 import pl.sutkowski.api.FileHolder;
@@ -11,16 +17,13 @@ import pl.sutkowski.api.exception.FileStorageException;
 import pl.sutkowski.api.impl.ByteFileHolder;
 import pl.sutkowski.api.utils.FileStorageUtils;
 
-import java.io.ByteArrayInputStream;
-import java.util.Objects;
-
 @Slf4j
-public class DefaultAmazonS3FileStorageImplementor implements FileStorageImplementor {
+public class AmazonS3FileStorageImplementor implements FileStorageImplementor {
 
     private final AmazonS3Client client;
     private final String bucketName;
 
-    public DefaultAmazonS3FileStorageImplementor(AmazonS3Client client, String bucketName) {
+    public AmazonS3FileStorageImplementor(AmazonS3Client client, String bucketName) {
         this.client = client;
         this.bucketName = bucketName;
     }

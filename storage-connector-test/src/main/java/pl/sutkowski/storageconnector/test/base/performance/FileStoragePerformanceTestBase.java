@@ -1,5 +1,13 @@
 package pl.sutkowski.storageconnector.test.base.performance;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.IntStream;
 import org.assertj.core.util.Lists;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -10,15 +18,6 @@ import pl.sutkowski.api.FileHolder;
 import pl.sutkowski.api.FileLocationHolder;
 import pl.sutkowski.api.impl.ByteFileHolder;
 import pl.sutkowski.storageconnector.test.base.AbstractTestBase;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -65,6 +64,7 @@ public abstract class FileStoragePerformanceTestBase extends AbstractTestBase {
 
     @Test
     @Repeat(TIMES)
+    @Ignore
     public void shouldCountAndLogUploadFileSequentiallyAndBatchUploadSameSmallFiles() {
         List<FileHolder> fileHolders = Lists.newArrayList();
         IntStream.range(0, 10).forEach((run) -> fileHolders.add(ByteFileHolder.of("test")));
@@ -75,6 +75,7 @@ public abstract class FileStoragePerformanceTestBase extends AbstractTestBase {
 
     @Test
     @Repeat(TIMES)
+    @Ignore
     public void shouldCountAndLogUploadFileSequentiallyAndBatchUploadSameFiles() {
         List<FileHolder> fileHolders = Lists.newArrayList();
         IntStream.range(0, 10).forEach((run) -> fileHolders.add(FILE_HOLDER_1_MB));
@@ -85,6 +86,7 @@ public abstract class FileStoragePerformanceTestBase extends AbstractTestBase {
 
     @Test
     @Repeat(TIMES)
+    @Ignore
     public void shouldCountAndLogUploadFileAndBatchUploadFilesOfSameSize() {
         List<FileHolder> fileHolders = Lists.newArrayList();
         int filesCount = 10;

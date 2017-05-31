@@ -1,8 +1,5 @@
 package pl.sutkowski.storageconnector.test.base.performance;
 
-import org.junit.Ignore;
-import org.junit.Test;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -10,6 +7,8 @@ import java.nio.file.StandardOpenOption;
 import java.util.List;
 import java.util.OptionalDouble;
 import java.util.stream.Collectors;
+import org.junit.Ignore;
+import org.junit.Test;
 
 import static java.util.stream.Collectors.toList;
 
@@ -20,8 +19,8 @@ public class PerformanceTestsOutputProcessor {
     public void transformFileToCorrectFormattedCsv() throws IOException {
 
         String userHome = System.getProperty("user.home");
-        String testsResultsFilename = String.format("%s/tests_results.txt", userHome);
-        String testsResultsOutputCsv = String.format("%s/tests_results.csv", userHome);
+        String testsResultsFilename = String.format("%s/batch_tests_results.txt", userHome);
+        String testsResultsOutputCsv = String.format("%s/batch_tests_results.csv", userHome);
 
         final List<String> strings = Files.readAllLines(Paths.get(testsResultsFilename));
 

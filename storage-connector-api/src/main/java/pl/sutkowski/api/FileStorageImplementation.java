@@ -27,6 +27,11 @@ public class FileStorageImplementation implements FileStorage {
     }
 
     @Override
+    public List<FileLocationHolder> batchUpload(List<FileHolder> files) {
+        return storageImplementor.batchUpload(files);
+    }
+
+    @Override
     public FileHolder download(FileLocationHolder url) {
         return storageImplementor.download(url);
     }

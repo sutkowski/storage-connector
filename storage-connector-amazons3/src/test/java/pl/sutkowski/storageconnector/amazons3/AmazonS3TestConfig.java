@@ -46,7 +46,7 @@ public class AmazonS3TestConfig {
 
     @Bean
     public FileStorageImplementor fileStorage(AmazonS3Client amazonS3Client, AmazonS3ConfigProvider amazonS3ConfigProvider) {
-        return new DefaultAmazonS3FileStorageImplementor(amazonS3Client, amazonS3ConfigProvider.getBucketName());
+        return new AmazonS3FileStorageImplementor(amazonS3Client, amazonS3ConfigProvider.getBucketName());
     }
 
 }

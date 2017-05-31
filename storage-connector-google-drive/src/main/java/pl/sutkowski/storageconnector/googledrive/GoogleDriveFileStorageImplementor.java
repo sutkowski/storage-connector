@@ -5,6 +5,10 @@ import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpResponse;
 import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.model.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Path;
+import java.util.Objects;
 import pl.sutkowski.api.FileHolder;
 import pl.sutkowski.api.FileLocationHolder;
 import pl.sutkowski.api.FileStorageImplementor;
@@ -14,17 +18,12 @@ import pl.sutkowski.api.utils.FileStorageUtils;
 import pl.sutkowski.storageconnector.googledrive.impl.GoogleDriveClient;
 import pl.sutkowski.storageconnector.googledrive.impl.holder.GoogleDriveFileLocationHolder;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Path;
-import java.util.Objects;
-
-public class DefaultGoogleDriveFileStorageImplementor implements FileStorageImplementor {
+public class GoogleDriveFileStorageImplementor implements FileStorageImplementor {
 
     final GoogleDriveClient googleDriveClient;
     private Drive drive;
 
-    public DefaultGoogleDriveFileStorageImplementor(GoogleDriveClient googleDriveClient) {
+    public GoogleDriveFileStorageImplementor(GoogleDriveClient googleDriveClient) {
         this.googleDriveClient = googleDriveClient;
         this.drive = googleDriveClient.getDrive();
     }
