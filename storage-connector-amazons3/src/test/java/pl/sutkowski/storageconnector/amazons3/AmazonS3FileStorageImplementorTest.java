@@ -12,7 +12,7 @@ import pl.sutkowski.storageconnector.test.base.contract.FileStorageContractTestB
 @RunWith(SpringJUnit4ClassRunner.class)
 @Configuration
 @SpringApplicationConfiguration(classes = {AmazonS3TestConfig.class})
-public class DefaultAmazonS3FileStorageImplementorTest extends FileStorageContractTestBase {
+public class AmazonS3FileStorageImplementorTest extends FileStorageContractTestBase {
 
     @Autowired
     FileStorageImplementor fileStorageImplementor;

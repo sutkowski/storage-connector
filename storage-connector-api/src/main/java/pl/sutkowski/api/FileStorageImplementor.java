@@ -5,7 +5,11 @@ import pl.sutkowski.api.impl.PathFileLocationHolder;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
+
+import static java.util.stream.Collectors.toList;
 
 public interface FileStorageImplementor {
 
@@ -35,5 +39,13 @@ public interface FileStorageImplementor {
 
     default FileLocationHolder produceFileLocationHolder(Path path) {
         return new PathFileLocationHolder(path);
+    }
+
+    default List<FileLocationHolder> batchUpload(Map<FileLocationHolder, FileHolder> files) {
+        return files.keySet().parallelStream().map(key -> upload(files.get(key), key)).collect(toList());
+    }
+
+    default List<FileLocationHolder> batchUpload(List<FileHolder> files) {
+        return files.parallelStream().map(holder -> upload(holder)).collect(toList());
     }
 }

@@ -12,4 +12,9 @@ import pl.sutkowski.api.FileHolder;
 @EqualsAndHashCode
 public class ByteFileHolder implements FileHolder {
     byte[] bytes;
+
+    public static ByteFileHolder of(String text) {
+        return new ByteFileHolder(text.getBytes());
+    }
+
 }

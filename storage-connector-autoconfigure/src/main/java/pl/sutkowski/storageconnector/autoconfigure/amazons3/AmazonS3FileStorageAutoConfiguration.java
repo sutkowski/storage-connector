@@ -15,18 +15,18 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import pl.sutkowski.api.FileStorage;
 import pl.sutkowski.api.FileStorageImplementation;
 import pl.sutkowski.api.FileStorageImplementor;
-import pl.sutkowski.storageconnector.amazons3.DefaultAmazonS3FileStorageImplementor;
+import pl.sutkowski.storageconnector.amazons3.AmazonS3FileStorageImplementor;
 import pl.sutkowski.storageconnector.amazons3.impl.AmazonS3ConfigProvider;
 
 @Configuration
-@ConditionalOnClass(DefaultAmazonS3FileStorageImplementor.class)
+@ConditionalOnClass(AmazonS3FileStorageImplementor.class)
 @PropertySource(value = "file:${user.home}/amazons3.yml", ignoreResourceNotFound = true)
 public class AmazonS3FileStorageAutoConfiguration {
 
     @Bean
     @ConditionalOnMissingBean(FileStorageImplementor.class)
     public FileStorageImplementor fileStorageImplementor(AmazonS3Client amazonS3Client, AmazonS3ConfigProvider amazonS3ConfigProvider) {
-        return new DefaultAmazonS3FileStorageImplementor(amazonS3Client, amazonS3ConfigProvider.getBucketName());
+        return new AmazonS3FileStorageImplementor(amazonS3Client, amazonS3ConfigProvider.getBucketName());
     }
 
     @Bean

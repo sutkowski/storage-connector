@@ -1,5 +1,8 @@
 package pl.sutkowski.api;
 
+import java.util.List;
+import java.util.Map;
+
 public class FileStorageImplementation implements FileStorage {
 
     private final FileStorageImplementor storageImplementor;
@@ -16,6 +19,16 @@ public class FileStorageImplementation implements FileStorage {
     @Override
     public FileLocationHolder upload(FileHolder content, FileLocationHolder url) {
         return storageImplementor.upload(content, url);
+    }
+
+    @Override
+    public List<FileLocationHolder> batchUpload(Map<FileLocationHolder, FileHolder> files) {
+        return storageImplementor.batchUpload(files);
+    }
+
+    @Override
+    public List<FileLocationHolder> batchUpload(List<FileHolder> files) {
+        return storageImplementor.batchUpload(files);
     }
 
     @Override

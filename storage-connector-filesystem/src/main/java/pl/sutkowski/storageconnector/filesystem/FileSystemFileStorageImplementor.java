@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Objects;
 
 public class FileSystemFileStorageImplementor
         implements FileStorageImplementor {
@@ -34,6 +35,9 @@ public class FileSystemFileStorageImplementor
 
     @Override
     public void remove(FileLocationHolder url) {
+        if(Objects.isNull(url)){
+            throw FileStorageException.pathNotFound();
+        }
         if (!resolveAbsolutePath(url).getPath().toFile().delete()) {
             throw FileStorageException.fileNotFound(url.getPath());
         }

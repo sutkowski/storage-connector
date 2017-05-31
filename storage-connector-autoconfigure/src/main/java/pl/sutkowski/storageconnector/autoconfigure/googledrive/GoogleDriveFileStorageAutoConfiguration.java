@@ -10,21 +10,21 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import pl.sutkowski.api.FileStorage;
 import pl.sutkowski.api.FileStorageImplementation;
 import pl.sutkowski.api.FileStorageImplementor;
-import pl.sutkowski.storageconnector.googledrive.DefaultGoogleDriveFileStorageImplementor;
+import pl.sutkowski.storageconnector.googledrive.GoogleDriveFileStorageImplementor;
 import pl.sutkowski.storageconnector.googledrive.authorization.GoogleAuthorization;
 import pl.sutkowski.storageconnector.googledrive.authorization.GoogleDriveCredentialsProvider;
 import pl.sutkowski.storageconnector.googledrive.authorization.impl.StreamGoogleAuthorization;
 import pl.sutkowski.storageconnector.googledrive.impl.GoogleDriveClient;
 
 @Configuration
-@ConditionalOnClass(DefaultGoogleDriveFileStorageImplementor.class)
+@ConditionalOnClass(GoogleDriveFileStorageImplementor.class)
 @PropertySource(value = "file:${user.home}/googledrive.yml", ignoreResourceNotFound = true)
 public class GoogleDriveFileStorageAutoConfiguration {
 
     @Bean
     @ConditionalOnMissingBean(FileStorageImplementor.class)
     public FileStorageImplementor fileStorageImplementor(GoogleDriveClient googleDriveClient) {
-        return new DefaultGoogleDriveFileStorageImplementor(googleDriveClient);
+        return new GoogleDriveFileStorageImplementor(googleDriveClient);
     }
 
     @Bean
